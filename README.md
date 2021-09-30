@@ -10,13 +10,13 @@ We will be developing an event-driven backtesting library (HackTest) as the cour
 - supporting a wide variety of order types
 - realistic emulation of market transactions
 - capable of handling real-time market data
-- performance and risk management metrics
+- live metrics of performance and risk management
 
 The library will likely function as illustrated bellow:
 
 ![HackTest](img/diagram.svg)
 
-For now, we will focus on backtesting on historical data and assume price data have already been downloaded from data vendors as CSV files. 
+For now, we will focus on backtesting with historical data. We assume price data have already been downloaded from data vendors as CSV files. 
 
-Based on the market data, `DataHandler` will emit a `MarketEvent` object to the `Strategy` object. The `Strategy` class is implemented by library users and can be customized to reflect their trading strategies. Upon receiving the `MarketEvent`, it will process the data and emit a `SignalEvent` to `Portfolio` with instructions on how to adjust current positions. Then `Potfolio` will send an `OrderEvent` to `ExecutionHandler` on what to buy and what to sell. `FillEvent` contains feedback to the `Portfolio` about the transaction costs and the details of orders filled from the broker. The `Dashboard` will be updated with real-time performance and risk management metrics. 
+Based on the downloaded market data, `DataHandler` will emit a `MarketEvent` object to the `Strategy` object. The `Strategy` class is implemented by library users and can be customized to reflect their trading strategies. Upon receiving the `MarketEvent`, it will process the data and emit a `SignalEvent` to `Portfolio` with instructions on how to adjust current positions. Then `Potfolio` will send an `OrderEvent` to `ExecutionHandler` on what to buy and what to sell. `ExecutionHandler` will talk to an actual or a simulated interactive broker. `FillEvent` contains feedback from the broker to the `Portfolio` about the details of orders executed, such as filled price and transaction costs. The `Dashboard` will be updated with real-time performance and risk management metrics. 
 
