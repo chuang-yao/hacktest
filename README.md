@@ -1,7 +1,7 @@
 
 # Project Proposal
 
-*Chuang Yao, Jianqi Zhu, Kongjun Qin*
+*Chuang Yao, Jianqi Zhu, Kongjun Qin.*
 
 We will be developing an event-driven backtesting library (HackTest) as the course project for OOP I. HackTest will be a library inspired by [a series of articles](https://www.quantstart.com/articles/Event-Driven-Backtesting-with-Python-Part-I/) on [QuantStart](https://quantstart.com/) about event-driven backtesting with Python. It will be written in C++ with the following in mind:
 
