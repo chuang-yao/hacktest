@@ -9,12 +9,14 @@
 
 namespace HackTest {
 
+enum class EventType { Fill, Market, Order, Signal };
+
 class Event {
 public:
-  explicit Event(std::string);
+  explicit Event(EventType);
 
-protected:
-  std::string type_;
+private:
+  EventType type_;
 };
 
 } // namespace HackTest

@@ -6,6 +6,6 @@
 
 namespace HackTest {
 
-Event::Event(std::string s) : type_(std::move(s)) {}
+Event::Event(EventType type) : type_(type) {}
 
 } // namespace HackTest
