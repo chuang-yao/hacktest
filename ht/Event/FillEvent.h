@@ -11,7 +11,8 @@ namespace HackTest {
 
 class FillEvent : public Event {
 public:
-  FillEvent(std::string, std::string, std::string, uint32_t, std::string, double);
+  FillEvent(std::string, std::string, std::string, uint32_t, std::string,
+            double);
 
 private:
   std::string timeIndex_;

@@ -1,8 +1,9 @@
-#include "ht/HackTest.h"
 #include "ht/Event/all.h"
+#include "ht/HackTest.h"
 
 int main() {
   HackTest::say_hello();
+
   HackTest::MarketEvent me;
   HackTest::SignalEvent se("AAPL", "2021-01-01", "LONG");
   HackTest::OrderEvent oe("MSFT", "MKT", 100, "SHORT");
