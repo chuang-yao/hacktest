@@ -7,6 +7,8 @@
 
 #include "ht/Event/Event.h"
 
+#include <string>
+
 namespace HackTest {
 
 class OrderEvent : public Event {

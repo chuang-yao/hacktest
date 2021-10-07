@@ -5,7 +5,7 @@
 #ifndef HACKTEST_EVENT_H
 #define HACKTEST_EVENT_H
 
-#include <string>
+#include <chrono>
 
 namespace HackTest {
 
@@ -17,6 +17,7 @@ public:
 
 private:
   EventType type_;
+  std::chrono::time_point<std::chrono::system_clock> datetime_;
 };
 
 } // namespace HackTest

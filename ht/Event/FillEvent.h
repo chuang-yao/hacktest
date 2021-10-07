@@ -7,15 +7,15 @@
 
 #include "ht/Event/Event.h"
 
+#include <string>
+
 namespace HackTest {
 
 class FillEvent : public Event {
 public:
-  FillEvent(std::string, std::string, std::string, uint32_t, std::string,
-            double);
+  FillEvent(std::string, std::string, uint32_t, std::string, double);
 
 private:
-  std::string timeIndex_;
   std::string symbol_;
   std::string exchange_;
   uint32_t quantity_;

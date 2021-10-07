@@ -6,9 +6,8 @@
 
 namespace HackTest {
 
-SignalEvent::SignalEvent(std::string symbol, std::string datetime,
-                         std::string direction)
+SignalEvent::SignalEvent(std::string symbol, std::string direction)
     : Event(EventType::Signal), symbol_(std::move(symbol)),
-      datetime_(std::move(datetime)), direction_(std::move(direction)) {}
+      direction_(std::move(direction)) {}
 
 } // namespace HackTest

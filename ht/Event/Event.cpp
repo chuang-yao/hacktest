@@ -6,6 +6,7 @@
 
 namespace HackTest {
 
-Event::Event(EventType type) : type_(type) {}
+Event::Event(EventType type)
+    : type_(type), datetime_(std::chrono::system_clock::now()) {}
 
 } // namespace HackTest

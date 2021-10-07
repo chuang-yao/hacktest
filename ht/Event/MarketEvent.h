@@ -7,6 +7,8 @@
 
 #include "Event.h"
 
+#include <string>
+
 namespace HackTest {
 
 class MarketEvent : public Event {

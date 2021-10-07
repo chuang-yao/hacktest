@@ -5,7 +5,7 @@ int main() {
   HackTest::say_hello();
 
   HackTest::MarketEvent me;
-  HackTest::SignalEvent se("AAPL", "2021-01-01", "LONG");
+  HackTest::SignalEvent se("AAPL", "LONG");
   HackTest::OrderEvent oe("MSFT", "MKT", 100, "SHORT");
-  HackTest::FillEvent fe("2021-01-01", "AAPL", "NASDAQ", 100, "LONG", 0.02);
+  HackTest::FillEvent fe("AAPL", "NASDAQ", 100, "LONG", 0.02);
 }

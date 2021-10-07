@@ -7,15 +7,16 @@
 
 #include "Event.h"
 
+#include <string>
+
 namespace HackTest {
 
 class SignalEvent : public Event {
 public:
-  SignalEvent(std::string, std::string, std::string);
+  SignalEvent(std::string, std::string);
 
 private:
   std::string symbol_;
-  std::string datetime_;
   std::string direction_;
 };
 
