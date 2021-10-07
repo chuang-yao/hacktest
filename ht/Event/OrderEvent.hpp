@@ -2,10 +2,10 @@
 // Created by Chuang on 10/6/2021.
 //
 
-#ifndef HACKTEST_ORDEREVENT_H
-#define HACKTEST_ORDEREVENT_H
+#ifndef HACKTEST_ORDEREVENT_HPP
+#define HACKTEST_ORDEREVENT_HPP
 
-#include "ht/Event/Event.h"
+#include "ht/Event/Event.hpp"
 
 #include <string>
 
@@ -24,4 +24,4 @@ private:
 
 } // namespace HackTest
 
-#endif // HACKTEST_ORDEREVENT_H
+#endif // HACKTEST_ORDEREVENT_HPP

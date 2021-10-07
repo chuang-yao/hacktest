@@ -1,5 +1,5 @@
-#include "ht/Event/all.h"
-#include "ht/HackTest.h"
+#include "ht/Event/all.hpp"
+#include "ht/HackTest.hpp"
 
 int main() {
   HackTest::say_hello();

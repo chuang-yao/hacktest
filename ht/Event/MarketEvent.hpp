@@ -2,10 +2,10 @@
 // Created by Chuang on 10/6/2021.
 //
 
-#ifndef HACKTEST_MARKETEVENT_H
-#define HACKTEST_MARKETEVENT_H
+#ifndef HACKTEST_MARKETEVENT_HPP
+#define HACKTEST_MARKETEVENT_HPP
 
-#include "Event.h"
+#include "Event.hpp"
 
 #include <string>
 
@@ -18,4 +18,4 @@ public:
 
 } // namespace HackTest
 
-#endif // HACKTEST_MARKETEVENT_H
+#endif // HACKTEST_MARKETEVENT_HPP

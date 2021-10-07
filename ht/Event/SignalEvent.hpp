@@ -2,10 +2,10 @@
 // Created by Chuang on 10/6/2021.
 //
 
-#ifndef HACKTEST_SIGNALEVENT_H
-#define HACKTEST_SIGNALEVENT_H
+#ifndef HACKTEST_SIGNALEVENT_HPP
+#define HACKTEST_SIGNALEVENT_HPP
 
-#include "Event.h"
+#include "Event.hpp"
 
 #include <string>
 
@@ -22,4 +22,4 @@ private:
 
 } // namespace HackTest
 
-#endif // HACKTEST_SIGNALEVENT_H
+#endif // HACKTEST_SIGNALEVENT_HPP

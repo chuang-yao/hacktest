@@ -8,13 +8,13 @@ set(HT_SOURCES
         Event/FillEvent.cpp)
 
 set(HT_HEADERS
-        HackTest.h
+        HackTest.hpp
 
-        Event/Event.h
-        Event/MarketEvent.h
-        Event/SignalEvent.h
-        Event/OrderEvent.h
-        Event/FillEvent.h)
+        Event/Event.hpp
+        Event/MarketEvent.hpp
+        Event/SignalEvent.hpp
+        Event/OrderEvent.hpp
+        Event/FillEvent.hpp)
 
 add_library(ht
         ${HT_SOURCES}

@@ -2,10 +2,10 @@
 // Created by Chuang on 10/6/2021.
 //
 
-#ifndef HACKTEST_FILLEVENT_H
-#define HACKTEST_FILLEVENT_H
+#ifndef HACKTEST_FILLEVENT_HPP
+#define HACKTEST_FILLEVENT_HPP
 
-#include "ht/Event/Event.h"
+#include "ht/Event/Event.hpp"
 
 #include <string>
 
@@ -25,4 +25,4 @@ private:
 
 } // namespace HackTest
 
-#endif // HACKTEST_FILLEVENT_H
+#endif // HACKTEST_FILLEVENT_HPP

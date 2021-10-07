@@ -2,8 +2,8 @@
 // Created by Chuang on 10/6/2021.
 //
 
-#ifndef HACKTEST_EVENT_H
-#define HACKTEST_EVENT_H
+#ifndef HACKTEST_EVENT_HPP
+#define HACKTEST_EVENT_HPP
 
 #include <chrono>
 
@@ -22,4 +22,4 @@ private:
 
 } // namespace HackTest
 
-#endif // HACKTEST_EVENT_H
+#endif // HACKTEST_EVENT_HPP
