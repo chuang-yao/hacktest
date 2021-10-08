@@ -16,11 +16,11 @@ public:
   FillEvent(std::string, std::string, uint32_t, std::string, double);
 
 private:
-  std::string symbol_;
-  std::string exchange_;
-  uint32_t quantity_;
-  std::string direction_;
-  double costs_;
+  std::string symbol_;    // symbol
+  std::string exchange_;  // where was the order got executed
+  uint32_t quantity_;     // exact quantities transacted
+  std::string direction_; // LONG or SHORT
+  double costs_;          // transaction costs
 };
 
 } // namespace HackTest

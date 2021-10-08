@@ -1,5 +1,5 @@
-#ifndef HACKTEST_H
-#define HACKTEST_H
+#ifndef HACKTEST_HPP
+#define HACKTEST_HPP
 
 namespace HackTest {
 
@@ -7,4 +7,4 @@ void say_hello();
 
 } // namespace HackTest
 
-#endif // HACKTEST_H
+#endif // HACKTEST_HPP
