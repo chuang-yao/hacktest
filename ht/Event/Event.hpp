@@ -9,14 +9,13 @@
 
 namespace HackTest {
 
-enum class EventType { Fill, Market, Order, Signal };
-
 class Event {
 public:
-  explicit Event(EventType);
+  enum class Type { Fill, Market, Order, Signal };
+  explicit Event(Type);
 
 private:
-  EventType type_;
+  Type type_;
   std::chrono::time_point<std::chrono::system_clock> datetime_;
 };
 
