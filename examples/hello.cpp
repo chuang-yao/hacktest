@@ -8,4 +8,9 @@ int main() {
   HackTest::SignalEvent se("AAPL", "LONG");
   HackTest::OrderEvent oe("MSFT", "MKT", 100, "SHORT");
   HackTest::FillEvent fe("AAPL", "NASDAQ", 100, "LONG", 0.02);
+
+  me.show_datetime();
+  se.show_datetime();
+  oe.show_datetime();
+  fe.show_datetime();
 }

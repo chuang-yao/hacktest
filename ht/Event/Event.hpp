@@ -12,7 +12,10 @@ namespace HackTest {
 class Event {
 public:
   enum class Type { Fill, Market, Order, Signal };
+
   explicit Event(Type);
+
+  void show_datetime();
 
 private:
   Type type_;
