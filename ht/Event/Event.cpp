@@ -1,7 +1,3 @@
-//
-// Created by Chuang on 10/6/2021.
-//
-
 #include "Event.hpp"
 
 #include <iostream>

@@ -1,7 +1,3 @@
-//
-// Created by Chuang on 10/6/2021.
-//
-
 #ifndef HACKTEST_FILLEVENT_HPP
 #define HACKTEST_FILLEVENT_HPP
 

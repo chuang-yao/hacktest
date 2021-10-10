@@ -1,7 +1,3 @@
-//
-// Created by Chuang on 10/6/2021.
-//
-
 #ifndef HACKTEST_MARKETEVENT_HPP
 #define HACKTEST_MARKETEVENT_HPP
 

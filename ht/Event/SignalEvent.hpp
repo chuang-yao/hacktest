@@ -1,7 +1,3 @@
-//
-// Created by Chuang on 10/6/2021.
-//
-
 #ifndef HACKTEST_SIGNALEVENT_HPP
 #define HACKTEST_SIGNALEVENT_HPP
 

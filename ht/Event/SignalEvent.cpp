@@ -1,7 +1,3 @@
-//
-// Created by Chuang on 10/6/2021.
-//
-
 #include "SignalEvent.hpp"
 
 namespace HackTest {
