@@ -9,7 +9,7 @@ namespace HackTest {
 
 class SignalEvent : public Event {
 public:
-  SignalEvent(std::string, std::string);
+  SignalEvent(EventQueue &, std::string, std::string);
 
 private:
   std::string symbol_;

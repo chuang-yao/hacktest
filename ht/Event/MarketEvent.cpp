@@ -2,6 +2,6 @@
 
 namespace HackTest {
 
-MarketEvent::MarketEvent() : Event(Type::Market) {}
+MarketEvent::MarketEvent(EventQueue &q) : Event(Type::Market, q) {}
 
 } // namespace HackTest

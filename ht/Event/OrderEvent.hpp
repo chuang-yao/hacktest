@@ -9,7 +9,7 @@ namespace HackTest {
 
 class OrderEvent : public Event {
 public:
-  OrderEvent(std::string, std::string, uint32_t, std::string);
+  OrderEvent(EventQueue &, std::string, std::string, uint32_t, std::string);
 
 private:
   std::string symbol_;    // order symbol, "AAPL"

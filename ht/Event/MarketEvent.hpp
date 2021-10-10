@@ -9,7 +9,7 @@ namespace HackTest {
 
 class MarketEvent : public Event {
 public:
-  MarketEvent();
+  explicit MarketEvent(EventQueue &);
 };
 
 } // namespace HackTest
