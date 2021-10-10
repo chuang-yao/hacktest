@@ -19,13 +19,14 @@ The library will likely function as illustrated bellow:
 ![HackTest](img/diagram.svg)
 
 For now, we will focus on backtesting with historical data. We assume price data have already been downloaded from data
-vendors as CSV files.
+vendors as CSV files. However, this framework should be easily adapted to a live trading environment.
 
 Based on the downloaded market data, `DataHandler` will emit a `MarketEvent` object to the `Strategy`
-object.The `Strategy` class is implemented by library users and can be customized to reflect different trading
-strategies. Upon receiving the `MarketEvent`, it will process the data and emit a `SignalEvent` to `Portfolio` with
-instructions on how to adjust current positions. Then `Portfolio` will send an `OrderEvent` to `ExecutionHandler` on
-what to buy and what to sell. `ExecutionHandler` will talk to an actual or a simulated interactive broker. `FillEvent`
-contains feedback from the broker to the `Portfolio` about the details of orders executed, such as price filled and
-transaction costs. The `Dashboard` will be updated with real-time performance and risk management metrics. 
+object.The `Strategy` class is implemented by library users and can be customized to support different trading
+strategies, from momentum-based ones to machine learning. Upon receiving the `MarketEvent`, it will process the data and
+emit a `SignalEvent` to `Portfolio` with instructions on how to adjust current positions. Then `Portfolio` will send
+an `OrderEvent` to `ExecutionHandler` on what to buy and what to sell. `ExecutionHandler` will talk to an actual or a
+simulated interactive broker. `FillEvent` contains feedback from the broker to the `Portfolio` about the details of
+orders executed, such as price filled and transaction costs. The `Dashboard` will be updated with real-time performance
+and risk management metrics. 
 
