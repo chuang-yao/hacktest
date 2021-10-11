@@ -4,6 +4,6 @@
 
 namespace HackTest {
 
-void say_hello() { std::cout << "Hello, from HackTest!\n"; }
+void say_hello() { std::cout << "Hello, from HackTest!" << std::endl; }
 
 } // namespace HackTest
