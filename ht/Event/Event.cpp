@@ -19,16 +19,16 @@ void Event::show_datetime() const {
 std::ostream &operator<<(std::ostream &os, const Event &e) {
   switch (e.type_) {
   case Event::Type::Market:
-    os << "MARKET" << '\t';
+    os << "MARKET\t";
     break;
   case Event::Type::Fill:
-    os << "FILL" << '\t';
+    os << "FILL\t";
     break;
   case Event::Type::Order:
-    os << "ORDER" << '\t';
+    os << "ORDER\t";
     break;
   case Event::Type::Signal:
-    os << "SIGNAL" << '\t';
+    os << "SIGNAL\t";
     break;
   }
   e.show_datetime();

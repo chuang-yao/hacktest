@@ -15,7 +15,7 @@ int main() {
   HackTest::SignalEvent se(q, "AAPL", "LONG");
   std::this_thread::sleep_for(std::chrono::milliseconds(1500));
 
-  HackTest::OrderEvent oe(q, "MSFT", "MKT", 100, "SHORT");
+  HackTest::OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
   std::this_thread::sleep_for(std::chrono::milliseconds(1500));
 
   HackTest::FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 0.02);
