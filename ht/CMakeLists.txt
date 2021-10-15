@@ -5,7 +5,10 @@ set(HT_SOURCES
         Event/MarketEvent.cpp
         Event/SignalEvent.cpp
         Event/OrderEvent.cpp
-        Event/FillEvent.cpp)
+        Event/FillEvent.cpp
+
+        DataHandler/DataHandler.cpp
+        DataHandler/CsvHistoricalHandler.cpp)
 
 set(HT_HEADERS
         HackTest.hpp
@@ -14,7 +17,10 @@ set(HT_HEADERS
         Event/MarketEvent.hpp
         Event/SignalEvent.hpp
         Event/OrderEvent.hpp
-        Event/FillEvent.hpp)
+        Event/FillEvent.hpp
+
+        DataHandler/DataHandler.hpp
+        DataHandler/CsvHistoricalHandler.hpp)
 
 add_library(ht
         ${HT_SOURCES}

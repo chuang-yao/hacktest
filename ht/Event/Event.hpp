@@ -22,7 +22,7 @@ public:
 
 private:
   Type type_;
-  std::chrono::time_point<std::chrono::system_clock> datetime_;
+  std::chrono::time_point<std::chrono::system_clock> time_;
 };
 
 class EventQueue {
