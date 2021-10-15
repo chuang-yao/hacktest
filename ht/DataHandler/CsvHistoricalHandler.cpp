@@ -3,3 +3,5 @@
 //
 
 #include "ht/DataHandler/CsvHistoricalHandler.hpp"
+
+namespace HackTest {}
