@@ -3,9 +3,13 @@
 #include "ht/HackTest.hpp"
 
 #include <chrono>
+#include <filesystem>
+#include <string>
 #include <thread>
+#include <vector>
 
-int main() {
+
+int main(int argc, char **argv) {
   HackTest::say_hello();
 
   HackTest::EventQueue q;
@@ -24,5 +28,8 @@ int main() {
 
   q.show();
 
-  HackTest::CsvHistoricalHandler dh(q, "", {"AAPL", "^IXIC"});
+  auto path = std::filesystem::path("/home/chuang/HackTest/examples/data/");
+  std::vector<std::string> symbols = {"AAPL", "^IXIC"};
+
+  HackTest::CsvHistoricalHandler dh(q, path, symbols);
 }
