@@ -1,3 +1,4 @@
+#include "ht/DataHandler/all.hpp"
 #include "ht/Event/all.hpp"
 #include "ht/HackTest.hpp"
 
@@ -22,4 +23,6 @@ int main() {
   std::this_thread::sleep_for(std::chrono::milliseconds(1500));
 
   q.show();
+
+  HackTest::CsvHistoricalHandler dh(q, "", {"AAPL", "^IXIC"});
 }

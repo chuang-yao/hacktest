@@ -7,7 +7,11 @@
 
 namespace HackTest {
 
-class DataHandler {};
+class DataHandler {
+public:
+  virtual void get_latest_data() = 0;
+  virtual void update_data() = 0;
+};
 
 } // namespace HackTest
 
