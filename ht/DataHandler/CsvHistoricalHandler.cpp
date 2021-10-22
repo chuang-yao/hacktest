@@ -4,9 +4,8 @@
 
 #include "ht/DataHandler/CsvHistoricalHandler.hpp"
 
-#include <utility>
-
 namespace HackTest {
+
 CsvHistoricalHandler::CsvHistoricalHandler(EventQueue &q,
                                            std::filesystem::path path,
                                            std::vector<std::string> symbols)

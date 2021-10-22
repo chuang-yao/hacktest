@@ -24,9 +24,9 @@ int main(int argc, char **argv) {
 
   q.show();
 
-  auto path = std::filesystem::path(
-      R"(C:\Users\Chuang\Developer\HackTest\examples\data)");
-  std::vector<std::string> symbols = {"AAPL", "^IXIC"};
+  std::filesystem::path path{
+      R"(C:\Users\Chuang\Developer\HackTest\examples\data\)"};
+  std::vector<std::string> symbols{"AAPL", "^IXIC"};
 
   HackTest::CsvHistoricalHandler dh(q, path, symbols);
 }
