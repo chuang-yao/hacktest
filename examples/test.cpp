@@ -5,6 +5,8 @@
 #include <chrono>
 #include <thread>
 
+namespace fs = std::filesystem;
+
 int main(int argc, char **argv) {
   HackTest::say_hello();
 
@@ -24,8 +26,7 @@ int main(int argc, char **argv) {
 
   q.show();
 
-  std::filesystem::path path{
-      R"(C:\Users\Chuang\Developer\HackTest\examples\data\)"};
+  fs::path path{"/home/chuang/HackTest/data/"};
   std::vector<std::string> symbols{"AAPL", "^IXIC"};
 
   HackTest::CsvHistoricalHandler dh(q, path, symbols);
