@@ -21,7 +21,6 @@ public:
 
   void get_latest_data() override;
   void update_data() override;
-  void read_csv_file();
   void show_data(const std::string &, const std::string &);
 
 private:
@@ -30,6 +29,8 @@ private:
   std::vector<std::string> symbols_; // a list of symbols to look for CSV files
   std::map<std::string, std::map<std::string, std::vector<double>>>
       data_; // data read from CSV files
+
+  void read_csv_file_();
 };
 
 } // namespace HackTest

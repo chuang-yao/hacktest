@@ -3,6 +3,7 @@
 //
 
 #include "ht/DataHandler/CsvHistoricalHandler.hpp"
+
 #include <fstream>
 
 namespace HackTest {
@@ -10,13 +11,15 @@ namespace HackTest {
 CsvHistoricalHandler::CsvHistoricalHandler(EventQueue &q,
                                            std::filesystem::path path,
                                            std::vector<std::string> symbols)
-    : q_(q), path_(std::move(path)), symbols_(std::move(symbols)) {}
+    : q_(q), path_(std::move(path)), symbols_(std::move(symbols)) {
+  read_csv_file_();
+}
 
 void CsvHistoricalHandler::get_latest_data() {}
 
 void CsvHistoricalHandler::update_data() {}
 
-void CsvHistoricalHandler::read_csv_file() {
+void CsvHistoricalHandler::read_csv_file_() {
   for (auto &&symbol : symbols_) {
     std::ifstream file(path_ / (symbol + ".csv"));
     if (file.is_open()) {
