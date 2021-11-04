@@ -2,32 +2,23 @@
 #include "ht/Event/all.hpp"
 #include "ht/HackTest.hpp"
 
-#include <chrono>
-#include <thread>
-
 namespace fs = std::filesystem;
 
-int main(int argc, char **argv) {
+int main() {
   HackTest::say_hello();
 
   HackTest::EventQueue q;
-
   HackTest::MarketEvent me(q);
-  std::this_thread::sleep_for(std::chrono::milliseconds(1500));
-
   HackTest::SignalEvent se(q, "AAPL", "LONG");
-  std::this_thread::sleep_for(std::chrono::milliseconds(1500));
-
   HackTest::OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
-  std::this_thread::sleep_for(std::chrono::milliseconds(1500));
-
   HackTest::FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 0.02);
-  std::this_thread::sleep_for(std::chrono::milliseconds(1500));
-
   q.show();
 
-  fs::path path{"/home/chuang/HackTest/data/"};
-  std::vector<std::string> symbols{"AAPL", "^IXIC"};
+  fs::path path{R"(C:\Users\chuan\CLionProjects\HackTest\examples\data)"};
+  std::vector<std::string> symbols{"AAPL", "^IXIC", "MSFT"};
 
   HackTest::CsvHistoricalHandler dh(q, path, symbols);
+  dh.read_csv_file();
+  dh.show_data("AAPL", "2021-06-10");
+  dh.show_data("AAPL", "2021-06-13");
 }

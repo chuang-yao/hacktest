@@ -6,6 +6,7 @@
 #define HACKTEST_CSVHISTORICALHANDLER_HPP
 
 #include <filesystem>
+#include <map>
 #include <string>
 
 #include "ht/DataHandler/DataHandler.hpp"
@@ -20,11 +21,15 @@ public:
 
   void get_latest_data() override;
   void update_data() override;
+  void read_csv_file();
+  void show_data(const std::string &, const std::string &);
 
 private:
   EventQueue &q_;                    // reference to the current event queue
   std::filesystem::path path_;       // path to the directory of CSV files
   std::vector<std::string> symbols_; // a list of symbols to look for CSV files
+  std::map<std::string, std::map<std::string, std::vector<double>>>
+      data_; // data read from CSV files
 };
 
 } // namespace HackTest
