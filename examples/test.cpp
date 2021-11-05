@@ -15,7 +15,12 @@ int main() {
   HackTest::FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 0.02);
   q.show();
 
+#ifdef __GNUC__
+  fs::path path{"/home/chuang/HackTest/examples/data"};
+#endif
+#ifdef __MSVC__
   fs::path path{R"(C:\Users\chuan\CLionProjects\HackTest\examples\data)"};
+#endif
   std::vector<std::string> symbols{"AAPL", "^IXIC", "MSFT"};
   HackTest::HistoricalCsvHandler dh(q, path, symbols);
   dh.show_data_on_date("AAPL", "2019-06-13");
