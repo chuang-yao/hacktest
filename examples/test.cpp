@@ -17,7 +17,8 @@ int main() {
 
   fs::path path{R"(C:\Users\chuan\CLionProjects\HackTest\examples\data)"};
   std::vector<std::string> symbols{"AAPL", "^IXIC", "MSFT"};
-  HackTest::CsvHistoricalHandler dh(q, path, symbols);
-  dh.show_data("AAPL", "2021-06-10");
-  dh.show_data("AAPL", "2021-06-13");
+  HackTest::HistoricalCsvHandler dh(q, path, symbols);
+  dh.show_data_on_date("AAPL", "2019-06-13");
+  dh.show_data_on_date("AAPL", "2021-06-13");
+  dh.get_latest_bars("AAPL", 10);
 }

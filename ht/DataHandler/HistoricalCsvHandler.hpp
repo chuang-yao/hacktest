@@ -2,8 +2,8 @@
 // Created by Chuang on 10/14/2021.
 //
 
-#ifndef HACKTEST_CSVHISTORICALHANDLER_HPP
-#define HACKTEST_CSVHISTORICALHANDLER_HPP
+#ifndef HACKTEST_HISTORICALCSVHANDLER_HPP
+#define HACKTEST_HISTORICALCSVHANDLER_HPP
 
 #include <filesystem>
 #include <map>
@@ -14,14 +14,14 @@
 
 namespace HackTest {
 
-class CsvHistoricalHandler : public DataHandler {
+class HistoricalCsvHandler : public DataHandler {
 public:
-  CsvHistoricalHandler(EventQueue &, std::filesystem::path,
+  HistoricalCsvHandler(EventQueue &, std::filesystem::path,
                        std::vector<std::string>);
 
-  void get_latest_data() override;
-  void update_data() override;
-  void show_data(const std::string &, const std::string &);
+  void get_latest_bars(std::string, size_t) override;
+  void update_bars() override;
+  void show_data_on_date(const std::string &symbol, const std::string &date);
 
 private:
   EventQueue &q_;                    // reference to the current event queue
@@ -35,4 +35,4 @@ private:
 
 } // namespace HackTest
 
-#endif // HACKTEST_CSVHISTORICALHANDLER_HPP
+#endif // HACKTEST_HISTORICALCSVHANDLER_HPP

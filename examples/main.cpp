@@ -4,4 +4,6 @@
 
 // Driver program for HackTest
 
-int main() {}
+#include "ht/Event/Event.hpp"
+
+int main() { HackTest::EventQueue q; }
