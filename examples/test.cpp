@@ -25,5 +25,5 @@ int main() {
   HackTest::HistoricalCsvHandler dh(q, path, symbols);
   dh.show_data_on_date("AAPL", "2019-06-13");
   dh.show_data_on_date("AAPL", "2021-06-13");
-  dh.get_latest_bars("AAPL", 10);
+  dh.get_latest_bars("AAPL", 5);
 }

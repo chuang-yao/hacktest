@@ -30,7 +30,7 @@ private:
   std::map<std::string, std::map<std::string, std::vector<double>>>
       data_; // data read from CSV files
 
-  void read_csv_file_();
+  void read_csv_files_();
 };
 
 } // namespace HackTest

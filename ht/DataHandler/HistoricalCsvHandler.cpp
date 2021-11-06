@@ -3,6 +3,7 @@
 //
 
 #include "ht/DataHandler/HistoricalCsvHandler.hpp"
+#include "ht/Event/MarketEvent.hpp"
 
 #include <fstream>
 
@@ -12,7 +13,7 @@ HistoricalCsvHandler::HistoricalCsvHandler(EventQueue &q,
                                            std::filesystem::path path,
                                            std::vector<std::string> symbols)
     : q_(q), path_(std::move(path)), symbols_(std::move(symbols)) {
-  read_csv_file_();
+  read_csv_files_();
 }
 
 void HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
@@ -30,9 +31,9 @@ void HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
   }
 }
 
-void HistoricalCsvHandler::update_bars() {}
+void HistoricalCsvHandler::update_bars() { MarketEvent e(q_); }
 
-void HistoricalCsvHandler::read_csv_file_() {
+void HistoricalCsvHandler::read_csv_files_() {
   for (auto &&symbol : symbols_) {
     std::ifstream file(path_ / (symbol + ".csv"));
     if (file.is_open()) {
