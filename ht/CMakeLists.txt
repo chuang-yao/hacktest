@@ -8,7 +8,9 @@ set(HT_SOURCES
         Event/FillEvent.cpp
 
         DataHandler/DataHandler.cpp
-        DataHandler/HistoricalCsvHandler.cpp)
+        DataHandler/HistoricalCsvHandler.cpp
+
+        Portfolio/Portfolio.cpp)
 
 set(HT_HEADERS
         HackTest.hpp
@@ -20,7 +22,9 @@ set(HT_HEADERS
         Event/FillEvent.hpp
 
         DataHandler/DataHandler.hpp
-        DataHandler/HistoricalCsvHandler.hpp)
+        DataHandler/HistoricalCsvHandler.hpp
+
+        Portfolio/Portfolio.hpp)
 
 add_library(ht
         ${HT_SOURCES}

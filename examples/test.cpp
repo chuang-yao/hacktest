@@ -21,9 +21,15 @@ int main() {
 #ifdef _WIN32
   fs::path path{R"(C:\Users\chuan\CLionProjects\HackTest\examples\data)"};
 #endif
+
   std::vector<std::string> symbols{"AAPL", "^IXIC", "MSFT"};
   HackTest::HistoricalCsvHandler dh(q, path, symbols);
+
   dh.show_data_on_date("AAPL", "2019-06-13");
   dh.show_data_on_date("AAPL", "2021-06-13");
+  dh.show_data_on_date("MSFT", "2019-06-13");
+  dh.show_data_on_date("MSFT", "2021-06-13");
+
   dh.get_latest_bars("AAPL", 5);
+  dh.get_latest_bars("MSFT", 5);
 }
