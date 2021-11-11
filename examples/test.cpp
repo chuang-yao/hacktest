@@ -25,6 +25,8 @@ int main() {
   std::vector<std::string> symbols{"AAPL", "^IXIC", "MSFT"};
   HackTest::HistoricalCsvHandler dh(q, path, symbols);
 
+  dh.show_data_on_date("AMD", "2019-06-13");
+
   dh.show_data_on_date("AAPL", "2019-06-13");
   dh.show_data_on_date("AAPL", "2021-06-13");
   dh.show_data_on_date("MSFT", "2019-06-13");
