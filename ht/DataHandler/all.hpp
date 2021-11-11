@@ -5,6 +5,7 @@
 #ifndef HACKTEST_DATAHANDLER_ALL_HPP
 #define HACKTEST_DATAHANDLER_ALL_HPP
 
+#include "ht/DataHandler/Data.hpp"
 #include "ht/DataHandler/DataHandler.hpp"
 #include "ht/DataHandler/HistoricalCsvHandler.hpp"
 

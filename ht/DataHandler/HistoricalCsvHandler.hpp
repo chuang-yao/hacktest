@@ -9,10 +9,29 @@
 #include <map>
 #include <string>
 
+#include "ht/DataHandler/Data.hpp"
 #include "ht/DataHandler/DataHandler.hpp"
 #include "ht/Event/Event.hpp"
 
 namespace HackTest {
+
+class YahooData : public Data {
+  friend class HistoricalCsvHandler;
+
+public:
+  YahooData();
+  YahooData(std::string date, double open, double high, double low,
+            double close, double adjClose, unsigned long long volume);
+
+private:
+  std::string date_;
+  double open_{};
+  double high_{};
+  double low_{};
+  double close_{};
+  double adjClose_{};
+  unsigned long long volume_{};
+};
 
 class HistoricalCsvHandler : public DataHandler {
 public:
@@ -27,7 +46,7 @@ private:
   EventQueue &q_;                    // reference to the current event queue
   std::filesystem::path path_;       // path to the directory of CSV files
   std::vector<std::string> symbols_; // a list of symbols to look for CSV files
-  std::map<std::string, std::map<std::string, std::vector<double>>>
+  std::map<std::string, std::map<std::string, YahooData>>
       data_; // data read from CSV files
 
   void read_csv_files_();
