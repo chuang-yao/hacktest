@@ -26,7 +26,7 @@ int main() {
   fs::path path{"/home/chuang/HackTest/examples/data"};
 #endif
 #ifdef _WIN32
-  fs::path path{R"(C:\Users\chuan\CLionProjects\HackTest\examples\data)"};
+  fs::path path{R"(C:\Users\Chuang\CLionProjects\HackTest\examples\data)"};
 #endif
 
   // a list of symbols with existing csv data files
