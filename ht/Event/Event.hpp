@@ -13,7 +13,7 @@ class Event {
   friend std::ostream &operator<<(std::ostream &, const Event &);
 
 public:
-  enum class Type { Fill, Market, Order, Signal };
+  enum class Type { FIL, MKT, ORD, SIG };
 
   explicit Event(Type);
   Event(Type, EventQueue &);

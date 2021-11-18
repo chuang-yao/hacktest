@@ -18,17 +18,17 @@ void Event::show_datetime() const {
 
 std::ostream &operator<<(std::ostream &os, const Event &e) {
   switch (e.type_) {
-  case Event::Type::Market:
-    os << "MARKET\t";
+  case Event::Type::MKT:
+    os << "MKT\t";
     break;
-  case Event::Type::Fill:
-    os << "FILL\t";
+  case Event::Type::FIL:
+    os << "FIL\t";
     break;
-  case Event::Type::Order:
-    os << "ORDER\t";
+  case Event::Type::ORD:
+    os << "ORD\t";
     break;
-  case Event::Type::Signal:
-    os << "SIGNAL\t";
+  case Event::Type::SIG:
+    os << "SIG\t";
     break;
   }
   e.show_datetime();
