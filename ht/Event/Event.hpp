@@ -29,7 +29,7 @@ class EventQueue {
   friend class Event;
 
 public:
-  void show();
+  void show() const;
 
 private:
   std::queue<Event> queue_;

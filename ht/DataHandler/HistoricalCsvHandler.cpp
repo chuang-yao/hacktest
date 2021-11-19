@@ -33,7 +33,7 @@ void HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
 void HistoricalCsvHandler::update_bars() { MarketEvent e(q_); }
 
 void HistoricalCsvHandler::read_csv_files_() {
-  for (auto &&symbol : symbols_) {
+  for (const auto &symbol : symbols_) {
     std::ifstream file(path_ / (symbol + ".csv"));
     if (file.is_open()) {
       std::string line;

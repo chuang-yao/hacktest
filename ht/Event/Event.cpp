@@ -35,7 +35,7 @@ std::ostream &operator<<(std::ostream &os, const Event &e) {
   return os;
 }
 
-void EventQueue::show() {
+void EventQueue::show() const {
   auto q = queue_;
   while (!q.empty()) {
     std::cout << q.front();
