@@ -28,6 +28,9 @@ int main() {
 #ifdef _WIN32
   fs::path path{R"(C:\Users\Chuang\CLionProjects\HackTest\examples\data)"};
 #endif
+#ifdef __APPLE__
+  fs::path path{"/Users/cyao/Developer/CLionProjects/HackTest/examples/data"};
+#endif
 
   // a list of symbols with existing csv data files
   std::vector<std::string> symbols{"AAPL", "^IXIC", "MSFT"};
