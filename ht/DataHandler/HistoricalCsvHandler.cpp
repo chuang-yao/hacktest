@@ -6,6 +6,7 @@
 #include "ht/Event/MarketEvent.hpp"
 
 #include <fstream>
+#include <sstream>
 
 namespace HackTest {
 
