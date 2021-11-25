@@ -47,7 +47,7 @@ void EventQueue::show() const {
 
 bool EventQueue::empty() const { return queue_.empty(); }
 
-Event EventQueue::get() {
+Event EventQueue::get_event() {
   auto event{queue_.back()};
   queue_.pop();
   return event;
