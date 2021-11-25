@@ -1,8 +1,12 @@
+//
+// Created by Chuang Yao on 10/21/2021.
+//
+
 #include "ht/DataHandler/all.hpp"
 #include "ht/Event/all.hpp"
 #include "ht/HackTest.hpp"
 
-// WARNING: std::filesystem might not work on macOS!
+// WARNING: std::filesystem might not work on some versions of macOS!
 namespace fs = std::filesystem;
 
 int main() {
