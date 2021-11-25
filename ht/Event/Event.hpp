@@ -17,9 +17,10 @@ public:
 
   explicit Event(Type);
   Event(Type, EventQueue &);
+  virtual ~Event() = default;
 
   void show_datetime() const;
-  Type get_type() const;
+  [[nodiscard]] Type get_type() const;
 
 private:
   Type type_;
@@ -32,7 +33,7 @@ class EventQueue {
 public:
   void show() const;
   [[nodiscard]] bool empty() const;
-  Event get();
+  Event get_event();
 
 private:
   std::queue<Event> queue_;
