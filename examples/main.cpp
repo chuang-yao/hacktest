@@ -10,7 +10,8 @@
 #include "ht/Portfolio/SimplePortfolio.hpp"
 #include "ht/Strategy/SimpleStrategy.hpp"
 
-#include <string>
+#include <chrono>
+#include <thread>
 #include <vector>
 
 namespace fs = std::filesystem;
@@ -46,25 +47,30 @@ int main() {
       if (q.empty()) {
         break;
       } else {
-        auto event{q.get()};
+        auto event = q.get_event();
         switch (event.get_type()) {
         case HackTest::Event::Type::FIL:
-          portfolio.update_fill(event);
+          portfolio.update_fill(dynamic_cast<HackTest::FillEvent &>(event));
           break;
         case HackTest::Event::Type::MKT:
-          strategy.calculate_signal(event);
-          portfolio.update_time_index(event);
+          strategy.calculate_signal(
+              dynamic_cast<HackTest::MarketEvent &>(event));
+          portfolio.update_time_index(
+              dynamic_cast<HackTest::MarketEvent &>(event));
           break;
         case HackTest::Event::Type::ORD:
-          broker.execute_order(event);
+          broker.execute_order(dynamic_cast<HackTest::OrderEvent &>(event));
           break;
         case HackTest::Event::Type::SIG:
-          portfolio.update_signal(event);
+          portfolio.update_signal(dynamic_cast<HackTest::SignalEvent &>(event));
           break;
         default:
           break;
         }
       }
     }
+
+    using namespace std::chrono_literals;
+    std::this_thread::sleep_for(1000ms);
   }
 }
