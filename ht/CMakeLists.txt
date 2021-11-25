@@ -11,6 +11,8 @@ set(HT_SOURCES
         DataHandler/Data.cpp
         DataHandler/HistoricalCsvHandler.cpp
 
+        Strategy/Strategy.cpp
+
         Portfolio/Portfolio.cpp
         Portfolio/SimplePortfolio.cpp)
 
@@ -26,6 +28,8 @@ set(HT_HEADERS
         DataHandler/DataHandler.hpp
         DataHandler/Data.hpp
         DataHandler/HistoricalCsvHandler.hpp
+
+        Strategy/Strategy.hpp
 
         Portfolio/Portfolio.hpp
         Portfolio/SimplePortfolio.hpp)
