@@ -6,5 +6,6 @@
 #define HACKTEST_ALL_HPP
 
 #include "ht/ExecutionHandler/ExecutionHandler.hpp"
+#include "ht/ExecutionHandler/SimulatedExecutionHandler.hpp"
 
 #endif // HACKTEST_ALL_HPP

@@ -5,6 +5,7 @@
 #ifndef HACKTEST_ALL_HPP
 #define HACKTEST_ALL_HPP
 
+#include "ht/Strategy/SimpleStrategy.hpp"
 #include "ht/Strategy/Strategy.hpp"
 
 #endif // HACKTEST_ALL_HPP
