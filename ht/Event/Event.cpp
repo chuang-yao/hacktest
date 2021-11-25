@@ -16,6 +16,8 @@ void Event::show_datetime() const {
   std::cout << std::ctime(&t);
 }
 
+Event::Type Event::get_type() const { return type_; }
+
 std::ostream &operator<<(std::ostream &os, const Event &e) {
   switch (e.type_) {
   case Event::Type::MKT:
@@ -41,6 +43,14 @@ void EventQueue::show() const {
     std::cout << q.front();
     q.pop();
   }
+}
+
+bool EventQueue::empty() const { return queue_.empty(); }
+
+Event EventQueue::get() {
+  auto event{queue_.back()};
+  queue_.pop();
+  return event;
 }
 
 } // namespace HackTest

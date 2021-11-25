@@ -19,6 +19,7 @@ public:
   Event(Type, EventQueue &);
 
   void show_datetime() const;
+  Type get_type() const;
 
 private:
   Type type_;
@@ -30,6 +31,8 @@ class EventQueue {
 
 public:
   void show() const;
+  [[nodiscard]] bool empty() const;
+  Event get();
 
 private:
   std::queue<Event> queue_;

@@ -42,6 +42,8 @@ public:
   void update_bars() override;
   void show_data_on_date(const std::string &symbol, const std::string &date);
 
+  bool continueTest{true};
+
 private:
   EventQueue &q_;                    // reference to the current event queue
   std::filesystem::path path_;       // path to the directory of CSV files

@@ -12,9 +12,13 @@ set(HT_SOURCES
         DataHandler/HistoricalCsvHandler.cpp
 
         Strategy/Strategy.cpp
+        Strategy/SimpleStrategy.cpp
 
         Portfolio/Portfolio.cpp
-        Portfolio/SimplePortfolio.cpp)
+        Portfolio/SimplePortfolio.cpp
+
+        ExecutionHandler/ExecutionHandler.cpp
+        ExecutionHandler/SimulatedExecutionHandler.cpp)
 
 set(HT_HEADERS
         HackTest.hpp
@@ -30,9 +34,13 @@ set(HT_HEADERS
         DataHandler/HistoricalCsvHandler.hpp
 
         Strategy/Strategy.hpp
+        Strategy/SimpleStrategy.hpp
 
         Portfolio/Portfolio.hpp
-        Portfolio/SimplePortfolio.hpp)
+        Portfolio/SimplePortfolio.hpp
+
+        ExecutionHandler/ExecutionHandler.hpp
+        ExecutionHandler/SimulatedExecutionHandler.hpp)
 
 add_library(ht
         ${HT_SOURCES}
