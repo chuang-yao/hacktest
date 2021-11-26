@@ -32,7 +32,7 @@ int main() {
 
   EventQueue q;
   HistoricalCsvHandler bars(q, path, symbols);
-  SimpleStrategy strategy;
+  SimpleStrategy strategy(q, bars);
   SimplePortfolio portfolio;
   SimulatedExecutionHandler broker;
 
@@ -49,45 +49,41 @@ int main() {
       break;
     }
     // handle the events
-    while (true) {
-      if (q.is_empty()) {
+    while (!q.is_empty()) {
+      auto event_handle{q.get_event_handle()};
+      switch (event_handle->get_type()) {
+      case Event::Type::FIL:
+#ifdef DEBUG
+        std::cout << "Handling FillEvent...\n";
+#endif
+        portfolio.update_fill(
+            *std::static_pointer_cast<FillEvent>(event_handle));
         break;
-      } else {
-        auto event_handle{q.get_event_handle()};
-        switch (event_handle->get_type()) {
-        case Event::Type::FIL:
+      case Event::Type::MKT:
 #ifdef DEBUG
-          std::cout << "Handling FillEvent...\n";
+        std::cout << "Handling MarketEvent...\n";
 #endif
-          portfolio.update_fill(
-              *std::static_pointer_cast<FillEvent>(event_handle));
-          break;
-        case Event::Type::MKT:
+        strategy.calculate_signal(
+            *std::static_pointer_cast<MarketEvent>(event_handle));
+        portfolio.update_time_index(
+            *std::static_pointer_cast<MarketEvent>(event_handle));
+        break;
+      case Event::Type::ORD:
 #ifdef DEBUG
-          std::cout << "Handling MarketEvent...\n";
+        std::cout << "Handling OrderEvent...\n";
 #endif
-          strategy.calculate_signal(
-              *std::static_pointer_cast<MarketEvent>(event_handle));
-          portfolio.update_time_index(
-              *std::static_pointer_cast<MarketEvent>(event_handle));
-          break;
-        case Event::Type::ORD:
+        broker.execute_order(
+            *std::static_pointer_cast<OrderEvent>(event_handle));
+        break;
+      case Event::Type::SIG:
 #ifdef DEBUG
-          std::cout << "Handling OrderEvent...\n";
+        std::cout << "Handling SignalEvent...\n";
 #endif
-          broker.execute_order(
-              *std::static_pointer_cast<OrderEvent>(event_handle));
-          break;
-        case Event::Type::SIG:
-#ifdef DEBUG
-          std::cout << "Handling SignalEvent...\n";
-#endif
-          portfolio.update_signal(
-              *std::static_pointer_cast<SignalEvent>(event_handle));
-          break;
-        default:
-          break;
-        }
+        portfolio.update_signal(
+            *std::static_pointer_cast<SignalEvent>(event_handle));
+        break;
+      default:
+        break;
       }
     }
 #ifdef DEBUG
