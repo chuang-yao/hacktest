@@ -37,9 +37,8 @@ class EventQueue {
 
 public:
   void show() const;
-  [[nodiscard]] bool empty() const;
-  [[nodiscard]] std::shared_ptr<Event> back() const;
-  std::shared_ptr<Event> get_event();
+  [[nodiscard]] bool is_empty() const;
+  std::shared_ptr<Event> get_event_handle();
 
 private:
   std::queue<std::shared_ptr<Event>> queue_;

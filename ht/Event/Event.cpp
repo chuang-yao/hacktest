@@ -42,18 +42,16 @@ std::ostream &operator<<(std::ostream &os, const Event &e) {
 }
 
 void EventQueue::show() const {
-  auto q = queue_;
+  auto q{queue_};
   while (!q.empty()) {
     std::cout << *(q.front());
     q.pop();
   }
 }
 
-bool EventQueue::empty() const { return queue_.empty(); }
+bool EventQueue::is_empty() const { return queue_.empty(); }
 
-std::shared_ptr<Event> EventQueue::back() const { return queue_.back(); }
-
-std::shared_ptr<Event> EventQueue::get_event() {
+std::shared_ptr<Event> EventQueue::get_event_handle() {
   std::shared_ptr<Event> p(queue_.back());
   queue_.pop();
   return p;
