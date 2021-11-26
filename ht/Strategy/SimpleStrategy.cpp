@@ -6,6 +6,6 @@
 
 namespace HackTest {
 
-void SimpleStrategy::calculate_signal(MarketEvent) {}
+void SimpleStrategy::calculate_signal(MarketEvent &) {}
 
 } // namespace HackTest

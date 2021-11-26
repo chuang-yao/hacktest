@@ -11,7 +11,7 @@ namespace HackTest {
 
 class SimulatedExecutionHandler : public ExecutionHandler {
 public:
-  void execute_order(OrderEvent) override;
+  void execute_order(OrderEvent &) override;
 };
 
 } // namespace HackTest

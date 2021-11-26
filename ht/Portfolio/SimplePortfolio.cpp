@@ -6,10 +6,10 @@
 
 namespace HackTest {
 
-void SimplePortfolio::update_fill(FillEvent) {}
+void SimplePortfolio::update_fill(FillEvent &) {}
 
-void SimplePortfolio::update_signal(SignalEvent) {}
+void SimplePortfolio::update_signal(SignalEvent &) {}
 
-void SimplePortfolio::update_time_index(MarketEvent) {}
+void SimplePortfolio::update_time_index(MarketEvent &) {}
 
 } // namespace HackTest

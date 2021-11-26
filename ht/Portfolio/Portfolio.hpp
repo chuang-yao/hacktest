@@ -13,9 +13,9 @@ namespace HackTest {
 
 class Portfolio {
 public:
-  virtual void update_signal(SignalEvent) = 0;
-  virtual void update_fill(FillEvent) = 0;
-  virtual void update_time_index(MarketEvent) = 0;
+  virtual void update_signal(SignalEvent &) = 0;
+  virtual void update_fill(FillEvent &) = 0;
+  virtual void update_time_index(MarketEvent &) = 0;
 };
 
 } // namespace HackTest

@@ -11,7 +11,7 @@ namespace HackTest {
 
 class SimpleStrategy : public Strategy {
 public:
-  void calculate_signal(MarketEvent) override;
+  void calculate_signal(MarketEvent &) override;
 };
 
 } // namespace HackTest

@@ -11,7 +11,7 @@ namespace HackTest {
 
 class ExecutionHandler {
 public:
-  virtual void execute_order(OrderEvent) = 0;
+  virtual void execute_order(OrderEvent &) = 0;
 };
 
 } // namespace HackTest

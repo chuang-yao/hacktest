@@ -11,9 +11,9 @@ namespace HackTest {
 
 class SimplePortfolio : public Portfolio {
 public:
-  void update_signal(SignalEvent) override;
-  void update_fill(FillEvent) override;
-  void update_time_index(MarketEvent) override;
+  void update_signal(SignalEvent &) override;
+  void update_fill(FillEvent &) override;
+  void update_time_index(MarketEvent &) override;
 };
 
 } // namespace HackTest

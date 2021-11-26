@@ -6,6 +6,6 @@
 
 namespace HackTest {
 
-void SimulatedExecutionHandler::execute_order(OrderEvent) {}
+void SimulatedExecutionHandler::execute_order(OrderEvent &) {}
 
 } // namespace HackTest
