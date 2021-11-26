@@ -11,6 +11,8 @@ class OrderEvent : public Event {
 public:
   OrderEvent(EventQueue &, std::string, std::string, uint32_t, std::string);
 
+  void print_order() const;
+
 private:
   std::string symbol_;    // order symbol, "AAPL"
   std::string order_;     // order type, "MKT" or "LMT"
