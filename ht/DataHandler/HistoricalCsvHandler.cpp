@@ -15,7 +15,6 @@ HistoricalCsvHandler::HistoricalCsvHandler(EventQueue &q,
                                            std::vector<std::string> symbols)
     : q_(q), path_(std::move(path)), symbols_(std::move(symbols)) {
   read_csv_files_();
-  latest_data_ = data_;
 }
 
 void HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
@@ -33,15 +32,20 @@ void HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
 }
 
 void HistoricalCsvHandler::update_bars() {
-  bool sendMktEvent{false};
-  for (const auto &symbol : symbols_) {
-    for (auto itr{data_[symbol].rbegin()};
-         itr->first > latest_data_[symbol].rbegin()->first; ++itr) {
-      latest_data_[symbol].insert(*itr);
-      sendMktEvent = true; // only send a MarketEvent when there is new data
+  if (!latest_data_.empty()) {
+    bool sendMktEvent{false};
+    for (const auto &symbol : symbols_) {
+      for (auto itr{data_[symbol].rbegin()};
+           itr->first > latest_data_[symbol].rbegin()->first; ++itr) {
+        latest_data_[symbol].insert(*itr);
+        sendMktEvent = true; // only send a MarketEvent when there is new data
+      }
     }
-  }
-  if (sendMktEvent) {
+    if (sendMktEvent) {
+      MarketEvent event(q_);
+    }
+  } else {
+    latest_data_ = data_;
     MarketEvent event(q_);
   }
 }
