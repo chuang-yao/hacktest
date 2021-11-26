@@ -33,13 +33,17 @@ void HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
 }
 
 void HistoricalCsvHandler::update_bars() {
+  bool sendMktEvent{false};
   for (const auto &symbol : symbols_) {
     for (auto itr{data_[symbol].rbegin()};
          itr->first > latest_data_[symbol].rbegin()->first; ++itr) {
       latest_data_[symbol].insert(*itr);
+      sendMktEvent = true; // only send a MarketEvent when there is new data
     }
   }
-  MarketEvent event(q_);
+  if (sendMktEvent) {
+    MarketEvent event(q_);
+  }
 }
 
 void HistoricalCsvHandler::read_csv_files_() {
