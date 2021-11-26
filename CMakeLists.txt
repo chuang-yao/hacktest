@@ -4,6 +4,10 @@ project(HackTest)
 
 set(CMAKE_CXX_STANDARD 20)
 
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+    add_definitions(-DDEBUG)
+endif ()
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 find_package(Boost)

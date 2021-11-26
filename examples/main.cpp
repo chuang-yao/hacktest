@@ -56,24 +56,32 @@ int main() {
         auto event_handle{q.get_event_handle()};
         switch (event_handle->get_type()) {
         case Event::Type::FIL:
-          std::cout << "Handling a FillEvent...\n";
+#ifdef DEBUG
+          std::cout << "Handling FillEvent...\n";
+#endif
           portfolio.update_fill(
               *std::static_pointer_cast<FillEvent>(event_handle));
           break;
         case Event::Type::MKT:
-          std::cout << "Handling a MarketEvent...\n";
+#ifdef DEBUG
+          std::cout << "Handling MarketEvent...\n";
+#endif
           strategy.calculate_signal(
               *std::static_pointer_cast<MarketEvent>(event_handle));
           portfolio.update_time_index(
               *std::static_pointer_cast<MarketEvent>(event_handle));
           break;
         case Event::Type::ORD:
-          std::cout << "Handling a OrderEvent...\n";
+#ifdef DEBUG
+          std::cout << "Handling OrderEvent...\n";
+#endif
           broker.execute_order(
               *std::static_pointer_cast<OrderEvent>(event_handle));
           break;
         case Event::Type::SIG:
-          std::cout << "Handling a SignalEvent...\n";
+#ifdef DEBUG
+          std::cout << "Handling SignalEvent...\n";
+#endif
           portfolio.update_signal(
               *std::static_pointer_cast<SignalEvent>(event_handle));
           break;
@@ -82,8 +90,9 @@ int main() {
         }
       }
     }
-
+#ifdef DEBUG
     std::cout << "The event queue is now empty! Sleep for 1000ms...\n";
+#endif
     using namespace std::chrono_literals;
     std::this_thread::sleep_for(1000ms);
   }
