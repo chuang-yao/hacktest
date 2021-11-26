@@ -11,7 +11,11 @@ namespace HackTest {
 
 class DataHandler {
 public:
+  // Returns the last N bars from the latest_symbol list, or fewer if less bars
+  // are available.
   virtual void get_latest_bars(std::string, size_t) = 0;
+  // Pushes the latest bar to the latest symbol structure for all symbols in the
+  // symbol list.
   virtual void update_bars() = 0;
 };
 

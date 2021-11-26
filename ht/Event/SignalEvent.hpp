@@ -13,7 +13,7 @@ public:
 
 private:
   std::string symbol_;
-  std::string direction_;
+  std::string direction_; // LONG, SHORT, EXIT
 };
 
 } // namespace HackTest
