@@ -39,7 +39,7 @@ int main() {
   MarketEvent me(q);
   SignalEvent se(q, "AAPL", "LONG");
   OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
-  FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 0.02);
+  FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 0.02, -1);
 
   while (true) {
     // update the bars

@@ -21,7 +21,7 @@ int main() {
   HackTest::MarketEvent me(q);
   HackTest::SignalEvent se(q, "AAPL", "LONG");
   HackTest::OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
-  HackTest::FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 0.02);
+  HackTest::FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 0.02, -1);
   q.show();
 
   // path to the directory containing csv price files
