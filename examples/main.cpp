@@ -15,6 +15,7 @@
 #include <thread>
 #include <vector>
 
+using namespace HackTest;
 namespace fs = std::filesystem;
 
 int main() {
@@ -29,16 +30,16 @@ int main() {
   fs::path path{"/Users/cyao/Developer/CLionProjects/HackTest/examples/data"};
 #endif
 
-  HackTest::EventQueue q;
-  HackTest::HistoricalCsvHandler bars(q, path, symbols);
-  HackTest::SimpleStrategy strategy;
-  HackTest::SimplePortfolio portfolio;
-  HackTest::SimulatedExecutionHandler broker;
+  EventQueue q;
+  HistoricalCsvHandler bars(q, path, symbols);
+  SimpleStrategy strategy;
+  SimplePortfolio portfolio;
+  SimulatedExecutionHandler broker;
 
-  HackTest::MarketEvent me(q);
-  HackTest::SignalEvent se(q, "AAPL", "LONG");
-  HackTest::OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
-  HackTest::FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 0.02);
+  MarketEvent me(q);
+  SignalEvent se(q, "AAPL", "LONG");
+  OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
+  FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 0.02);
 
   while (true) {
     // update the bars
@@ -49,28 +50,28 @@ int main() {
     }
     // handle the events
     while (true) {
-      if (q.empty()) {
+      if (q.is_empty()) {
         break;
       } else {
-        auto event_handle = q.get_event();
+        auto event_handle{q.get_event_handle()};
         switch (event_handle->get_type()) {
-        case HackTest::Event::Type::FIL:
+        case Event::Type::FIL:
           portfolio.update_fill(
-              *std::static_pointer_cast<HackTest::FillEvent>(event_handle));
+              *std::static_pointer_cast<FillEvent>(event_handle));
           break;
-        case HackTest::Event::Type::MKT:
+        case Event::Type::MKT:
           strategy.calculate_signal(
-              *std::static_pointer_cast<HackTest::MarketEvent>(event_handle));
+              *std::static_pointer_cast<MarketEvent>(event_handle));
           portfolio.update_time_index(
-              *std::static_pointer_cast<HackTest::MarketEvent>(event_handle));
+              *std::static_pointer_cast<MarketEvent>(event_handle));
           break;
-        case HackTest::Event::Type::ORD:
+        case Event::Type::ORD:
           broker.execute_order(
-              *std::static_pointer_cast<HackTest::OrderEvent>(event_handle));
+              *std::static_pointer_cast<OrderEvent>(event_handle));
           break;
-        case HackTest::Event::Type::SIG:
+        case Event::Type::SIG:
           portfolio.update_signal(
-              *std::static_pointer_cast<HackTest::SignalEvent>(event_handle));
+              *std::static_pointer_cast<SignalEvent>(event_handle));
           break;
         default:
           break;
@@ -78,8 +79,7 @@ int main() {
       }
     }
 
-    std::cout << "The event queue is now empty! Sleep for 1000ms...\n";
-    
+    std::cout << "The event queue is now is_empty! Sleep for 1000ms...\n";
     using namespace std::chrono_literals;
     std::this_thread::sleep_for(1000ms);
   }
