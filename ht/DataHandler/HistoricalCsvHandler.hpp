@@ -17,6 +17,7 @@ namespace HackTest {
 
 class YahooData : public Data {
   friend class HistoricalCsvHandler;
+  friend class SimpleStrategy;
 
 public:
   YahooData(std::string date, double open, double high, double low,
@@ -33,6 +34,8 @@ private:
 };
 
 class HistoricalCsvHandler : public DataHandler {
+  friend class SimpleStrategy;
+
 public:
   HistoricalCsvHandler(EventQueue &, std::filesystem::path,
                        std::vector<std::string>);
@@ -46,8 +49,8 @@ private:
   EventQueue &q_;                    // reference to the current event queue
   std::filesystem::path path_;       // path to the directory of CSV files
   std::vector<std::string> symbols_; // a list of symbols to look for CSV files
-  std::map<std::string, std::map<std::string, YahooData>>
-      data_;            // data read from CSV files
+  std::map<std::string, std::map<std::string, YahooData>> data_;
+  std::map<std::string, std::map<std::string, YahooData>> latest_data_;
   bool continue_{true}; // whether to continue the backtest
 
   void read_csv_files_();

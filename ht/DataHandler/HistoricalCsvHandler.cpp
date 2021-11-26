@@ -15,6 +15,7 @@ HistoricalCsvHandler::HistoricalCsvHandler(EventQueue &q,
                                            std::vector<std::string> symbols)
     : q_(q), path_(std::move(path)), symbols_(std::move(symbols)) {
   read_csv_files_();
+  latest_data_ = data_;
 }
 
 void HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
@@ -23,15 +24,23 @@ void HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
               << '\n';
     for (auto itr = data_[symbol].rbegin();
          itr != data_[symbol].rend() && n != 0; ++itr, --n) {
-      std::cout << (itr->second).date_ << '\t' << (itr->second).open_ << '\t'
-                << (itr->second).high_ << '\t' << (itr->second).low_ << '\t'
-                << (itr->second).close_ << '\t' << (itr->second).adjClose_
-                << '\t' << (itr->second).volume_ << '\n';
+      std::cout << itr->second.date_ << '\t' << itr->second.open_ << '\t'
+                << itr->second.high_ << '\t' << itr->second.low_ << '\t'
+                << itr->second.close_ << '\t' << itr->second.adjClose_ << '\t'
+                << itr->second.volume_ << '\n';
     }
   }
 }
 
-void HistoricalCsvHandler::update_bars() {}
+void HistoricalCsvHandler::update_bars() {
+  for (const auto &symbol : symbols_) {
+    for (auto itr{data_[symbol].rbegin()};
+         itr->first > latest_data_[symbol].rbegin()->first; ++itr) {
+      latest_data_[symbol].insert(*itr);
+    }
+  }
+  MarketEvent event(q_);
+}
 
 void HistoricalCsvHandler::read_csv_files_() {
   for (const auto &symbol : symbols_) {
