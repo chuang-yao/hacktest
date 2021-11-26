@@ -39,7 +39,7 @@ int main() {
   MarketEvent me(q);
   SignalEvent se(q, "AAPL", "LONG");
   OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
-  FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 0.02, -1);
+  FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 100, -1);
 
   while (true) {
     // update the bars
@@ -56,20 +56,24 @@ int main() {
         auto event_handle{q.get_event_handle()};
         switch (event_handle->get_type()) {
         case Event::Type::FIL:
+          std::cout << "Handling a FillEvent...\n";
           portfolio.update_fill(
               *std::static_pointer_cast<FillEvent>(event_handle));
           break;
         case Event::Type::MKT:
+          std::cout << "Handling a MarketEvent...\n";
           strategy.calculate_signal(
               *std::static_pointer_cast<MarketEvent>(event_handle));
           portfolio.update_time_index(
               *std::static_pointer_cast<MarketEvent>(event_handle));
           break;
         case Event::Type::ORD:
+          std::cout << "Handling a OrderEvent...\n";
           broker.execute_order(
               *std::static_pointer_cast<OrderEvent>(event_handle));
           break;
         case Event::Type::SIG:
+          std::cout << "Handling a SignalEvent...\n";
           portfolio.update_signal(
               *std::static_pointer_cast<SignalEvent>(event_handle));
           break;
@@ -79,7 +83,7 @@ int main() {
       }
     }
 
-    std::cout << "The event queue is now is_empty! Sleep for 1000ms...\n";
+    std::cout << "The event queue is now empty! Sleep for 1000ms...\n";
     using namespace std::chrono_literals;
     std::this_thread::sleep_for(1000ms);
   }
