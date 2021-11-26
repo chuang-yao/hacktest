@@ -12,7 +12,7 @@ Event::Event(Type t) : type_(t), time_(std::chrono::system_clock::now()) {}
 
 Event::Event(Type t, EventQueue &q)
     : type_(t), time_(std::chrono::system_clock::now()) {
-  q.queue_.push(*this);
+  q.queue_.push(std::make_shared<Event>(*this));
 }
 
 void Event::show_datetime() const {
@@ -44,17 +44,19 @@ std::ostream &operator<<(std::ostream &os, const Event &e) {
 void EventQueue::show() const {
   auto q = queue_;
   while (!q.empty()) {
-    std::cout << q.front();
+    std::cout << *(q.front());
     q.pop();
   }
 }
 
 bool EventQueue::empty() const { return queue_.empty(); }
 
-Event EventQueue::get_event() {
-  auto event{queue_.back()};
+std::shared_ptr<Event> EventQueue::back() const { return queue_.back(); }
+
+std::shared_ptr<Event> EventQueue::get_event() {
+  std::shared_ptr<Event> p(queue_.back());
   queue_.pop();
-  return event;
+  return p;
 }
 
 } // namespace HackTest

@@ -37,10 +37,11 @@ class EventQueue {
 public:
   void show() const;
   [[nodiscard]] bool empty() const;
-  Event get_event();
+  [[nodiscard]] std::shared_ptr<Event> back() const;
+  std::shared_ptr<Event> get_event();
 
 private:
-  std::queue<Event> queue_;
+  std::queue<std::shared_ptr<Event>> queue_;
 };
 
 } // namespace HackTest

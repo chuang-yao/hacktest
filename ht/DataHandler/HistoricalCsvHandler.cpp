@@ -31,7 +31,7 @@ void HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
   }
 }
 
-void HistoricalCsvHandler::update_bars() { MarketEvent e(q_); }
+void HistoricalCsvHandler::update_bars() {}
 
 void HistoricalCsvHandler::read_csv_files_() {
   for (const auto &symbol : symbols_) {
@@ -42,23 +42,24 @@ void HistoricalCsvHandler::read_csv_files_() {
       while (std::getline(file, line)) {
         std::istringstream ss(line);
         // Date,Open,High,Low,Close,Adj Close,Volume
-        YahooData entry;
         std::string field;
         std::getline(ss, field, ',');
-        entry.date_ = field;
+        std::string date = field;
         std::getline(ss, field, ',');
-        entry.open_ = std::stod(field);
+        double open = std::stod(field);
         std::getline(ss, field, ',');
-        entry.high_ = std::stod(field);
+        double high = std::stod(field);
         std::getline(ss, field, ',');
-        entry.low_ = std::stod(field);
+        double low = std::stod(field);
         std::getline(ss, field, ',');
-        entry.close_ = std::stod(field);
+        double close = std::stod(field);
         std::getline(ss, field, ',');
-        entry.adjClose_ = std::stod(field);
+        double adjClose = std::stod(field);
         std::getline(ss, field, ',');
-        entry.volume_ = std::stoull(field);
-        data_[symbol][entry.date_] = entry;
+        unsigned long long volume = std::stoull(field);
+
+        YahooData entry(date, open, high, low, close, adjClose, volume);
+        data_[symbol].insert({entry.date_, entry});
       }
     } else {
       std::cout << "Failed to open " << path_ / (symbol + ".csv") << '\n';
@@ -70,18 +71,20 @@ void HistoricalCsvHandler::read_csv_files_() {
 void HistoricalCsvHandler::show_data_on_date(const std::string &symbol,
                                              const std::string &date) {
   if (data_.contains(symbol) && data_[symbol].contains(date)) {
+    auto itr_symbol = data_.find(symbol);
+    auto itr_date = itr_symbol->second.find(date);
     std::cout << "Showing data for " << symbol << " on " << date << '\n';
-    std::cout << data_[symbol][date].date_ << '\t' << data_[symbol][date].open_
-              << '\t' << data_[symbol][date].high_ << '\t'
-              << data_[symbol][date].low_ << '\t' << data_[symbol][date].close_
-              << '\t' << data_[symbol][date].adjClose_ << '\t'
-              << data_[symbol][date].volume_ << '\n';
+    std::cout << itr_date->second.date_ << '\t' << itr_date->second.open_
+              << '\t' << itr_date->second.high_ << '\t' << itr_date->second.low_
+              << '\t' << itr_date->second.close_ << '\t'
+              << itr_date->second.adjClose_ << '\t' << itr_date->second.volume_
+              << '\n';
   } else {
     std::cout << "No data for " << symbol << " on " << date << '\n';
   }
 }
 
-YahooData::YahooData() : Data("YAHOO", Type::HISTORICAL) {}
+bool HistoricalCsvHandler::continue_test() const { return continue_; }
 
 YahooData::YahooData(std::string date, double open, double high, double low,
                      double close, double adjClose, unsigned long long volume)
