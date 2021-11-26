@@ -11,6 +11,7 @@
 #include "ht/Strategy/SimpleStrategy.hpp"
 
 #include <chrono>
+#include <iostream>
 #include <thread>
 #include <vector>
 
@@ -34,35 +35,42 @@ int main() {
   HackTest::SimplePortfolio portfolio;
   HackTest::SimulatedExecutionHandler broker;
 
+  HackTest::MarketEvent me(q);
+  HackTest::SignalEvent se(q, "AAPL", "LONG");
+  HackTest::OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
+  HackTest::FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 0.02);
+
   while (true) {
     // update the bars
-    if (bars.continueTest) {
+    if (bars.continue_test()) {
       bars.update_bars();
     } else {
       break;
     }
-
     // handle the events
     while (true) {
       if (q.empty()) {
         break;
       } else {
-        auto event = q.get_event();
-        switch (event.get_type()) {
+        auto event_handle = q.get_event();
+        switch (event_handle->get_type()) {
         case HackTest::Event::Type::FIL:
-          portfolio.update_fill(dynamic_cast<HackTest::FillEvent &>(event));
+          portfolio.update_fill(
+              *std::static_pointer_cast<HackTest::FillEvent>(event_handle));
           break;
         case HackTest::Event::Type::MKT:
           strategy.calculate_signal(
-              dynamic_cast<HackTest::MarketEvent &>(event));
+              *std::static_pointer_cast<HackTest::MarketEvent>(event_handle));
           portfolio.update_time_index(
-              dynamic_cast<HackTest::MarketEvent &>(event));
+              *std::static_pointer_cast<HackTest::MarketEvent>(event_handle));
           break;
         case HackTest::Event::Type::ORD:
-          broker.execute_order(dynamic_cast<HackTest::OrderEvent &>(event));
+          broker.execute_order(
+              *std::static_pointer_cast<HackTest::OrderEvent>(event_handle));
           break;
         case HackTest::Event::Type::SIG:
-          portfolio.update_signal(dynamic_cast<HackTest::SignalEvent &>(event));
+          portfolio.update_signal(
+              *std::static_pointer_cast<HackTest::SignalEvent>(event_handle));
           break;
         default:
           break;
@@ -70,6 +78,8 @@ int main() {
       }
     }
 
+    std::cout << "The event queue is now empty! Sleep for 1000ms...\n";
+    
     using namespace std::chrono_literals;
     std::this_thread::sleep_for(1000ms);
   }
