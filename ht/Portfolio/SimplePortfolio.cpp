@@ -4,7 +4,15 @@
 
 #include "ht/Portfolio/SimplePortfolio.hpp"
 
+#include "ht/DataHandler/HistoricalCsvHandler.hpp"
+#include <utility>
+
 namespace HackTest {
+
+SimplePortfolio::SimplePortfolio(EventQueue &q, HistoricalCsvHandler &dh,
+                                 std::string date, double capital)
+    : q_(q), dh_(dh), symbols_(dh_.symbols_), start_date_(std::move(date)),
+      initial_capital_(capital) {}
 
 void SimplePortfolio::update_fill(FillEvent &) {}
 
