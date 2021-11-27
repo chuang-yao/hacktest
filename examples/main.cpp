@@ -33,15 +33,15 @@ int main() {
   EventQueue q;
   HistoricalCsvHandler bars(q, path, symbols);
   SimpleStrategy strategy(q, bars);
-  SimplePortfolio portfolio;
+  SimplePortfolio portfolio(q, bars, "2021-01-01", 0.0);
   SimulatedExecutionHandler broker;
 
-/*
-  MarketEvent me(q);
-  SignalEvent se(q, "AAPL", "LONG");
-  OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
-  FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 100, -1);
-*/
+  /*
+    MarketEvent me(q);
+    SignalEvent se(q, "AAPL", "LONG");
+    OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
+    FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 100, -1);
+  */
 
   while (true) {
     // update the bars
