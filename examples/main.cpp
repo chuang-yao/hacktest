@@ -5,7 +5,6 @@
 // Driver program for HackTest
 
 #include "ht/DataHandler/HistoricalCsvHandler.hpp"
-#include "ht/Event/Event.hpp"
 #include "ht/ExecutionHandler/SimulatedExecutionHandler.hpp"
 #include "ht/Portfolio/SimplePortfolio.hpp"
 #include "ht/Strategy/SimpleStrategy.hpp"

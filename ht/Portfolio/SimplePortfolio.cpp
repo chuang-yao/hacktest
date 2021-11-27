@@ -4,9 +4,6 @@
 
 #include "ht/Portfolio/SimplePortfolio.hpp"
 
-#include "ht/DataHandler/HistoricalCsvHandler.hpp"
-#include <utility>
-
 namespace HackTest {
 
 SimplePortfolio::SimplePortfolio(EventQueue &q, HistoricalCsvHandler &dh,
