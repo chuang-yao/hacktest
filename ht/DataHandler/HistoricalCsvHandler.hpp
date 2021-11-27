@@ -35,6 +35,7 @@ private:
 
 class HistoricalCsvHandler : public DataHandler {
   friend class SimpleStrategy;
+  friend class SimplePortfolio;
 
 public:
   HistoricalCsvHandler(EventQueue &, std::filesystem::path,
