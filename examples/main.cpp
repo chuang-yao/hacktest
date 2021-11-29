@@ -35,13 +35,6 @@ int main() {
   SimplePortfolio portfolio(q, bars, "2021-01-01", 100.0);
   SimulatedExecutionHandler broker;
 
-  /*
-    MarketEvent me(q);
-    SignalEvent se(q, "AAPL", "LONG");
-    OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
-    FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 100, -1);
-  */
-
   while (true) {
     // update the bars
     if (bars.continue_test()) {
