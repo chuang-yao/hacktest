@@ -10,6 +10,19 @@
 
 namespace HackTest {
 
+class SimpleHolding {
+  friend class SimplePortfolio;
+
+public:
+  SimpleHolding(const std::vector<std::string> &, double, double, double);
+
+private:
+  std::map<std::string, double> holdings_;
+  double cash_;
+  double commission_;
+  double total_;
+};
+
 class SimplePortfolio : public Portfolio {
 public:
   SimplePortfolio(EventQueue &, HistoricalCsvHandler &, std::string, double);
@@ -28,6 +41,9 @@ private:
 
   std::map<std::string, double> current_positions_;
   std::map<std::string, std::map<std::string, double>> all_positions_;
+
+  SimpleHolding current_holdings_;
+  std::map<std::string, SimpleHolding> all_holdings_;
 };
 
 } // namespace HackTest

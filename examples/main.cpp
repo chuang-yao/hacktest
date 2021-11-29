@@ -32,7 +32,7 @@ int main() {
   EventQueue q;
   HistoricalCsvHandler bars(q, path, symbols);
   SimpleStrategy strategy(q, bars);
-  SimplePortfolio portfolio(q, bars, "2021-01-01", 0.0);
+  SimplePortfolio portfolio(q, bars, "2021-01-01", 100.0);
   SimulatedExecutionHandler broker;
 
   /*
