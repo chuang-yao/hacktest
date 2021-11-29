@@ -18,6 +18,7 @@ namespace HackTest {
 class YahooData : public Data {
   friend class HistoricalCsvHandler;
   friend class SimpleStrategy;
+  friend class SimplePortfolio;
 
 public:
   YahooData(std::string date, double open, double high, double low,
