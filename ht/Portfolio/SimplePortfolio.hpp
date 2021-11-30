@@ -32,8 +32,8 @@ public:
   void update_time_index(MarketEvent &) override;
 
 private:
-  EventQueue q_;
-  HistoricalCsvHandler dh_;
+  EventQueue &q_;
+  HistoricalCsvHandler &dh_;
   std::vector<std::string> symbols_;
 
   std::string start_date_;
