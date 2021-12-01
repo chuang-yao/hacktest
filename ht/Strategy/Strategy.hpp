@@ -11,6 +11,7 @@ namespace HackTest {
 
 class Strategy {
 public:
+  virtual ~Strategy() = default;
   virtual void calculate_signal(MarketEvent &) = 0;
 };
 

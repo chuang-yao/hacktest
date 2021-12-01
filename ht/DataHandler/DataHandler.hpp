@@ -11,6 +11,7 @@ namespace HackTest {
 
 class DataHandler {
 public:
+  virtual ~DataHandler() = default;
   // Returns the last N bars from the latest_symbol list, or fewer if less bars
   // are available.
   virtual void get_latest_bars(std::string, size_t) = 0;
