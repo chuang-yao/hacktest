@@ -18,7 +18,7 @@ void SimpleStrategy::calculate_signal(MarketEvent &me) {
   for (const auto &symbol : symbols_) {
     if (!dh_.latest_data_.empty()) {
       SignalEvent se(q_, dh_.latest_data_[symbol].rbegin()->second.date_,
-                     "LONG");
+                     "LONG", 1);
       bought_[symbol] = true;
     }
   }

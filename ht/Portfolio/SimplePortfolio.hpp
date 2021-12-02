@@ -33,6 +33,8 @@ public:
   void update_position_from_fill(FillEvent &);
   void update_holdings_from_fill(FillEvent &);
 
+  void generate_simple_order(SignalEvent &);
+
 private:
   EventQueue &q_;
   HistoricalCsvHandler &dh_;

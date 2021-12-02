@@ -3,6 +3,7 @@
 //
 
 #include "ht/Portfolio/SimplePortfolio.hpp"
+#include "ht/Event/OrderEvent.hpp"
 
 namespace HackTest {
 
@@ -31,7 +32,9 @@ void SimplePortfolio::update_fill(FillEvent &event) {
   update_holdings_from_fill(event);
 }
 
-void SimplePortfolio::update_signal(SignalEvent &) {}
+void SimplePortfolio::update_signal(SignalEvent &event) {
+  generate_simple_order(event);
+}
 
 void SimplePortfolio::update_time_index(MarketEvent &) {
   // get the latest data from DataHandler
@@ -92,6 +95,26 @@ void SimplePortfolio::update_holdings_from_fill(FillEvent &event) {
   current_holdings_.commission_ += event.get_commission();
   current_holdings_.cash_ -= fill_cost + event.get_commission();
   current_holdings_.total_ -= fill_cost + event.get_commission();
+}
+
+void SimplePortfolio::generate_simple_order(SignalEvent &event) {
+  int32_t mkt_quantity{static_cast<int32_t>(100 * event.get_strength())};
+  int32_t cur_quantity{
+      static_cast<int32_t>(current_positions_[event.get_symbol()])};
+
+  if (event.get_direction() == "LONG" && cur_quantity == 0) {
+    OrderEvent(q_, event.get_symbol(), "MKT", mkt_quantity, "LONG");
+  }
+  if (event.get_direction() == "SHORT" && cur_quantity == 0) {
+    OrderEvent(q_, event.get_symbol(), "MKT", mkt_quantity, "SHORT");
+  }
+
+  if (event.get_direction() == "EXIT" && cur_quantity > 0) {
+    OrderEvent(q_, event.get_symbol(), "MKT", abs(cur_quantity), "SHORT");
+  }
+  if (event.get_direction() == "EXIT" && cur_quantity < 0) {
+    OrderEvent(q_, event.get_symbol(), "MKT", abs(cur_quantity), "LONG");
+  }
 }
 
 } // namespace HackTest
