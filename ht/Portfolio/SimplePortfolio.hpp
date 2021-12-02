@@ -30,6 +30,8 @@ public:
   void update_signal(SignalEvent &) override;
   void update_fill(FillEvent &) override;
   void update_time_index(MarketEvent &) override;
+  void update_position_from_fill(FillEvent &);
+  void update_holdings_from_fill(FillEvent &);
 
 private:
   EventQueue &q_;

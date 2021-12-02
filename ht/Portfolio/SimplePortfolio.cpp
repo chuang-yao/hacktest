@@ -26,7 +26,10 @@ SimplePortfolio::SimplePortfolio(EventQueue &q, HistoricalCsvHandler &dh,
   all_holdings_.insert({start_date_, current_holdings_});
 }
 
-void SimplePortfolio::update_fill(FillEvent &) {}
+void SimplePortfolio::update_fill(FillEvent &event) {
+  update_position_from_fill(event);
+  update_holdings_from_fill(event);
+}
 
 void SimplePortfolio::update_signal(SignalEvent &) {}
 
@@ -57,6 +60,38 @@ void SimplePortfolio::update_time_index(MarketEvent &) {
     holding.total_ += market_value;
   }
   all_holdings_.insert({bars.rbegin()->second.date_, holding});
+}
+
+void SimplePortfolio::update_position_from_fill(FillEvent &event) {
+  double direction;
+  if (event.get_direction() == "LONG") {
+    direction = 1;
+  } else if (event.get_direction() == "SHORT") {
+    direction = -1;
+  } else {
+    direction = 0;
+  }
+
+  current_positions_[event.get_symbol()] += event.get_quantity() * direction;
+}
+
+void SimplePortfolio::update_holdings_from_fill(FillEvent &event) {
+  double direction;
+  if (event.get_direction() == "LONG") {
+    direction = 1;
+  } else if (event.get_direction() == "SHORT") {
+    direction = -1;
+  } else {
+    direction = 0;
+  }
+
+  double cost{dh_.latest_data_[event.get_symbol()].rbegin()->second.adjClose_};
+  double fill_cost{direction * cost * event.get_quantity()};
+
+  current_holdings_.holdings_[event.get_symbol()] += fill_cost;
+  current_holdings_.commission_ += event.get_commission();
+  current_holdings_.cash_ -= fill_cost + event.get_commission();
+  current_holdings_.total_ -= fill_cost + event.get_commission();
 }
 
 } // namespace HackTest
