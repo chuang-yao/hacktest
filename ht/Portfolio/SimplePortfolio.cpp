@@ -44,8 +44,8 @@ void SimplePortfolio::update_time_index(MarketEvent &) {
   }
 
   // update positions
-  std::map<std::string, double> pos;
-  std::map<std::string, std::map<std::string, double>> dp;
+  std::map<std::string, int64_t> pos;
+  std::map<std::string, std::map<std::string, int64_t>> dp;
   for (const auto &symbol : symbols_) {
     pos.insert({symbol, current_positions_[symbol]});
   }
@@ -57,7 +57,7 @@ void SimplePortfolio::update_time_index(MarketEvent &) {
                         current_holdings_.commission_,
                         current_holdings_.total_);
   for (const auto &symbol : symbols_) {
-    double market_value = current_positions_[symbol] *
+    double market_value = static_cast<double>(current_positions_[symbol]) *
                           dh_.latest_data_[symbol].rbegin()->second.adjClose_;
     holding.holdings_[symbol] = market_value;
     holding.total_ += market_value;
@@ -66,7 +66,7 @@ void SimplePortfolio::update_time_index(MarketEvent &) {
 }
 
 void SimplePortfolio::update_position_from_fill(FillEvent &event) {
-  double direction;
+  int direction;
   if (event.get_direction() == "LONG") {
     direction = 1;
   } else if (event.get_direction() == "SHORT") {
@@ -98,9 +98,8 @@ void SimplePortfolio::update_holdings_from_fill(FillEvent &event) {
 }
 
 void SimplePortfolio::generate_simple_order(SignalEvent &event) {
-  int32_t mkt_quantity{static_cast<int32_t>(100 * event.get_strength())};
-  int32_t cur_quantity{
-      static_cast<int32_t>(current_positions_[event.get_symbol()])};
+  int64_t mkt_quantity{static_cast<int64_t>(100 * event.get_strength())};
+  int64_t cur_quantity{current_positions_[event.get_symbol()]};
 
   if (event.get_direction() == "LONG" && cur_quantity == 0) {
     OrderEvent(q_, event.get_symbol(), "MKT", mkt_quantity, "LONG");
@@ -110,10 +109,10 @@ void SimplePortfolio::generate_simple_order(SignalEvent &event) {
   }
 
   if (event.get_direction() == "EXIT" && cur_quantity > 0) {
-    OrderEvent(q_, event.get_symbol(), "MKT", abs(cur_quantity), "SHORT");
+    OrderEvent(q_, event.get_symbol(), "MKT", cur_quantity, "SHORT");
   }
   if (event.get_direction() == "EXIT" && cur_quantity < 0) {
-    OrderEvent(q_, event.get_symbol(), "MKT", abs(cur_quantity), "LONG");
+    OrderEvent(q_, event.get_symbol(), "MKT", -cur_quantity, "LONG");
   }
 }
 

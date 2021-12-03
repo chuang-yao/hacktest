@@ -43,8 +43,8 @@ private:
   std::string start_date_;
   double initial_capital_;
 
-  std::map<std::string, double> current_positions_;
-  std::map<std::string, std::map<std::string, double>> all_positions_;
+  std::map<std::string, int64_t> current_positions_;
+  std::map<std::string, std::map<std::string, int64_t>> all_positions_;
 
   SimpleHolding current_holdings_;
   std::map<std::string, SimpleHolding> all_holdings_;
