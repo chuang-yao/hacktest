@@ -47,7 +47,7 @@ void EventQueue::show() const {
 bool EventQueue::is_empty() const { return queue_.empty(); }
 
 std::shared_ptr<Event> EventQueue::get_event_handle() {
-  std::shared_ptr<Event> p(queue_.front());
+  std::shared_ptr<Event> p{std::move(queue_.front())};
   queue_.pop();
   return p;
 }

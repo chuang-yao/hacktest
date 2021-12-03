@@ -44,7 +44,7 @@ int main() {
     }
     // handle the events
     while (!q.is_empty()) {
-      auto event_handle{q.get_event_handle()};
+      auto event_handle{std::move(q.get_event_handle())};
       switch (event_handle->get_type()) {
       case Event::Type::FIL:
 #ifdef DEBUG
