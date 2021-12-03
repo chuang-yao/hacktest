@@ -33,7 +33,7 @@ int main() {
   HistoricalCsvHandler bars(q, path, symbols);
   SimpleStrategy strategy(q, bars);
   SimplePortfolio portfolio(q, bars, "2021-01-01", 100.0);
-  SimulatedExecutionHandler broker;
+  SimulatedExecutionHandler broker(q, bars);
 
   while (true) {
     // update the bars

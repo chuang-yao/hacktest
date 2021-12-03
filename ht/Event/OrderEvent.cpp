@@ -13,4 +13,11 @@ void OrderEvent::print_order() const {
   std::cout << symbol_ << '\t' << order_ << '\t' << quantity_ << '\t'
             << direction_ << '\n';
 }
+
+std::string OrderEvent::get_symbol() const { return symbol_; }
+
+uint32_t OrderEvent::get_quantity() const { return quantity_; }
+
+std::string OrderEvent::get_direction() const { return direction_; }
+
 } // namespace HackTest

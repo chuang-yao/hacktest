@@ -13,6 +13,10 @@ public:
 
   void print_order() const;
 
+  [[nodiscard]] std::string get_symbol() const;
+  [[nodiscard]] uint32_t get_quantity() const;
+  [[nodiscard]] std::string get_direction() const;
+
 private:
   std::string symbol_;    // order symbol, "AAPL"
   std::string order_;     // order type, "MKT" or "LMT"

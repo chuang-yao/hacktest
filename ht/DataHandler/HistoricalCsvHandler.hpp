@@ -19,6 +19,7 @@ class YahooData : public Data {
   friend class HistoricalCsvHandler;
   friend class SimpleStrategy;
   friend class SimplePortfolio;
+  friend class SimulatedExecutionHandler;
 
 public:
   YahooData(std::string date, double open, double high, double low,
@@ -37,6 +38,7 @@ private:
 class HistoricalCsvHandler : public DataHandler {
   friend class SimpleStrategy;
   friend class SimplePortfolio;
+  friend class SimulatedExecutionHandler;
 
 public:
   HistoricalCsvHandler(EventQueue &, std::filesystem::path,
