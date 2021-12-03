@@ -32,12 +32,6 @@ private:
 };
 
 class EventQueue {
-  friend class Event;
-  friend class FillEvent;
-  friend class MarketEvent;
-  friend class OrderEvent;
-  friend class SignalEvent;
-
   template <typename D, typename... Args>
   friend void add_event_to_queue(EventQueue &q, Args... args);
 
