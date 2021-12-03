@@ -38,6 +38,9 @@ class EventQueue {
   friend class OrderEvent;
   friend class SignalEvent;
 
+  template <typename D, typename... Args>
+  friend void add_event_to_queue(EventQueue &q, Args... args);
+
 public:
   void show() const;
   [[nodiscard]] bool is_empty() const;
@@ -47,6 +50,12 @@ public:
 private:
   std::queue<std::shared_ptr<Event>> queue_;
 };
+
+template <typename D, typename... Args>
+void add_event_to_queue(EventQueue &q, Args... args) {
+  std::shared_ptr<Event> ptr = std::make_shared<D>(q, args...);
+  q.push(ptr);
+}
 
 } // namespace HackTest
 

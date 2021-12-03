@@ -22,6 +22,15 @@ int main() {
   HackTest::SignalEvent se(q, "AAPL", "2021-01-01", "LONG", 1);
   HackTest::OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
   HackTest::FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 100, -1);
+
+  HackTest::add_event_to_queue<HackTest::MarketEvent>(q);
+  HackTest::add_event_to_queue<HackTest::SignalEvent>(q, "AAPL", "2021-01-01",
+                                                      "LONG", 1);
+  HackTest::add_event_to_queue<HackTest::OrderEvent>(q, "AAPL", "MKT", 100,
+                                                     "SHORT");
+  HackTest::add_event_to_queue<HackTest::FillEvent>(q, "AAPL", "NASDAQ", 100,
+                                                    "LONG", 100, -1);
+
   q.show();
 
   // path to the directory containing csv price files

@@ -42,13 +42,11 @@ void HistoricalCsvHandler::update_bars() {
       }
     }
     if (sendMktEvent) {
-      std::shared_ptr<Event> ptr = std::make_shared<MarketEvent>(q_);
-      q_.push(ptr);
+      add_event_to_queue<MarketEvent>(q_);
     }
   } else {
     latest_data_ = data_;
-    std::shared_ptr<Event> ptr = std::make_shared<MarketEvent>(q_);
-    q_.push(ptr);
+    add_event_to_queue<MarketEvent>(q_);
   }
 }
 
