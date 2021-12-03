@@ -51,30 +51,30 @@ int main() {
         std::cout << "Handling FillEvent...\n";
 #endif
         portfolio.update_fill(
-            *std::static_pointer_cast<FillEvent>(event_handle));
+            *std::dynamic_pointer_cast<FillEvent>(event_handle));
         break;
       case Event::Type::MKT:
 #ifdef DEBUG
         std::cout << "Handling MarketEvent...\n";
 #endif
         strategy.calculate_signal(
-            *std::static_pointer_cast<MarketEvent>(event_handle));
+            *std::dynamic_pointer_cast<MarketEvent>(event_handle));
         portfolio.update_time_index(
-            *std::static_pointer_cast<MarketEvent>(event_handle));
+            *std::dynamic_pointer_cast<MarketEvent>(event_handle));
         break;
       case Event::Type::ORD:
 #ifdef DEBUG
         std::cout << "Handling OrderEvent...\n";
 #endif
         broker.execute_order(
-            *std::static_pointer_cast<OrderEvent>(event_handle));
+            *std::dynamic_pointer_cast<OrderEvent>(event_handle));
         break;
       case Event::Type::SIG:
 #ifdef DEBUG
         std::cout << "Handling SignalEvent...\n";
 #endif
         portfolio.update_signal(
-            *std::static_pointer_cast<SignalEvent>(event_handle));
+            *std::dynamic_pointer_cast<SignalEvent>(event_handle));
         break;
       default:
         break;
