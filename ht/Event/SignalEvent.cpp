@@ -7,7 +7,7 @@ namespace HackTest {
 SignalEvent::SignalEvent(EventQueue &q, std::string symbol,
                          std::string datetime, std::string direction,
                          double strength)
-    : Event(Type::SIG, q), symbol_(std::move(symbol)),
+    : Event(Type::SIG), symbol_(std::move(symbol)),
       datetime_(std::move(datetime)), direction_(std::move(direction)),
       strength_(strength) {}
 

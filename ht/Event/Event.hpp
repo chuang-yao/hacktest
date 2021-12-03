@@ -21,7 +21,6 @@ public:
   enum class Type { FIL, MKT, ORD, SIG };
 
   explicit Event(Type);
-  Event(Type, EventQueue &);
   virtual ~Event() = default;
 
   void show_datetime() const;
@@ -34,10 +33,15 @@ private:
 
 class EventQueue {
   friend class Event;
+  friend class FillEvent;
+  friend class MarketEvent;
+  friend class OrderEvent;
+  friend class SignalEvent;
 
 public:
   void show() const;
   [[nodiscard]] bool is_empty() const;
+  void push(const std::shared_ptr<Event> &);
   std::shared_ptr<Event> get_event_handle();
 
 private:

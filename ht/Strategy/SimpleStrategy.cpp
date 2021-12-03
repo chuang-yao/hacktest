@@ -17,9 +17,10 @@ SimpleStrategy::SimpleStrategy(EventQueue &q, HistoricalCsvHandler &dh)
 void SimpleStrategy::calculate_signal(MarketEvent &me) {
   for (const auto &symbol : symbols_) {
     if (!dh_.latest_data_.empty()) {
-      SignalEvent se(q_, symbol,
-                     dh_.latest_data_[symbol].rbegin()->second.date_, "LONG",
-                     1);
+      std::shared_ptr<Event> ptr = std::make_shared<SignalEvent>(
+          q_, symbol, dh_.latest_data_[symbol].rbegin()->second.date_, "LONG",
+          1);
+      q_.push(ptr);
       bought_[symbol] = true;
     }
   }

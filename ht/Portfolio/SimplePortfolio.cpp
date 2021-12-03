@@ -102,17 +102,25 @@ void SimplePortfolio::generate_simple_order(SignalEvent &event) {
   int64_t cur_quantity{current_positions_[event.get_symbol()]};
 
   if (event.get_direction() == "LONG" && cur_quantity == 0) {
-    OrderEvent(q_, event.get_symbol(), "MKT", mkt_quantity, "LONG");
+    std::shared_ptr<Event> ptr = std::make_shared<OrderEvent>(
+        q_, event.get_symbol(), "MKT", mkt_quantity, "LONG");
+    q_.push(ptr);
   }
   if (event.get_direction() == "SHORT" && cur_quantity == 0) {
-    OrderEvent(q_, event.get_symbol(), "MKT", mkt_quantity, "SHORT");
+    std::shared_ptr<Event> ptr = std::make_shared<OrderEvent>(
+        q_, event.get_symbol(), "MKT", mkt_quantity, "SHORT");
+    q_.push(ptr);
   }
 
   if (event.get_direction() == "EXIT" && cur_quantity > 0) {
-    OrderEvent(q_, event.get_symbol(), "MKT", cur_quantity, "SHORT");
+    std::shared_ptr<Event> ptr = std::make_shared<OrderEvent>(
+        q_, event.get_symbol(), "MKT", cur_quantity, "SHORT");
+    q_.push(ptr);
   }
   if (event.get_direction() == "EXIT" && cur_quantity < 0) {
-    OrderEvent(q_, event.get_symbol(), "MKT", -cur_quantity, "LONG");
+    std::shared_ptr<Event> ptr = std::make_shared<OrderEvent>(
+        q_, event.get_symbol(), "MKT", -cur_quantity, "LONG");
+    q_.push(ptr);
   }
 }
 

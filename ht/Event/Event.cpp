@@ -10,11 +10,6 @@ namespace HackTest {
 
 Event::Event(Type t) : type_(t), time_(std::chrono::system_clock::now()) {}
 
-Event::Event(Type t, EventQueue &q)
-    : type_(t), time_(std::chrono::system_clock::now()) {
-  q.queue_.push(std::make_shared<Event>(*this));
-}
-
 void Event::show_datetime() const {
   auto t = std::chrono::system_clock::to_time_t(time_);
   std::cout << std::ctime(&t);
@@ -56,5 +51,7 @@ std::shared_ptr<Event> EventQueue::get_event_handle() {
   queue_.pop();
   return p;
 }
+
+void EventQueue::push(const std::shared_ptr<Event> &e) { queue_.push(e); }
 
 } // namespace HackTest
