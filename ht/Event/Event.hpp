@@ -51,9 +51,9 @@ private:
   std::queue<std::shared_ptr<Event>> queue_;
 };
 
-template <typename D, typename... Args>
+template <typename DerivedEvent, typename... Args>
 void add_event_to_queue(EventQueue &q, Args... args) {
-  std::shared_ptr<Event> ptr = std::make_shared<D>(q, args...);
+  std::shared_ptr<Event> ptr = std::make_shared<DerivedEvent>(q, args...);
   q.push(ptr);
 }
 
