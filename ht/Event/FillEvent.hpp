@@ -13,6 +13,10 @@ public:
             double, double);
 
   [[nodiscard]] double calculate_ib_commission() const;
+  [[nodiscard]] const std::string &get_direction() const;
+  [[nodiscard]] const std::string &get_symbol() const;
+  [[nodiscard]] uint32_t get_quantity() const;
+  [[nodiscard]] double get_commission() const;
 
 private:
   std::string symbol_;    // symbol

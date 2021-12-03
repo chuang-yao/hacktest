@@ -25,4 +25,12 @@ double FillEvent::calculate_ib_commission() const {
   return total_cost;
 }
 
+const std::string &FillEvent::get_direction() const { return direction_; }
+
+const std::string &FillEvent::get_symbol() const { return symbol_; }
+
+uint32_t FillEvent::get_quantity() const { return quantity_; }
+
+double FillEvent::get_commission() const { return commission_; }
+
 } // namespace HackTest
