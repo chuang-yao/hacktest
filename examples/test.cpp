@@ -24,10 +24,10 @@ int main() {
   OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
   FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 100, -1);
 
-  add_event_to_queue<MarketEvent>(q);
-  add_event_to_queue<SignalEvent>(q, "AAPL", "2021-01-01", "LONG", 1);
-  add_event_to_queue<OrderEvent>(q, "AAPL", "MKT", 100, "SHORT");
-  add_event_to_queue<FillEvent>(q, "AAPL", "NASDAQ", 100, "LONG", 100, -1);
+  add_to_queue<MarketEvent>(q);
+  add_to_queue<SignalEvent>(q, "AAPL", "2021-01-01", "LONG", 1);
+  add_to_queue<OrderEvent>(q, "AAPL", "MKT", 100, "SHORT");
+  add_to_queue<FillEvent>(q, "AAPL", "NASDAQ", 100, "LONG", 100, -1);
 
   q.show();
 

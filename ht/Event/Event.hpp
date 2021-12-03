@@ -33,7 +33,7 @@ private:
 
 class EventQueue {
   template <typename D, typename... Args>
-  friend void add_event_to_queue(EventQueue &q, Args... args);
+  friend void add_to_queue(EventQueue &q, Args... args);
 
 public:
   void show() const;
@@ -46,7 +46,7 @@ private:
 };
 
 template <typename DerivedEvent, typename... Args>
-void add_event_to_queue(EventQueue &q, Args... args) {
+void add_to_queue(EventQueue &q, Args... args) {
   std::shared_ptr<Event> ptr = std::make_shared<DerivedEvent>(q, args...);
   q.push(ptr);
 }

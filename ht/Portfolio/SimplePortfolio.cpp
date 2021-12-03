@@ -102,21 +102,21 @@ void SimplePortfolio::generate_simple_order(SignalEvent &event) {
   int64_t cur_quantity{current_positions_[event.get_symbol()]};
 
   if (event.get_direction() == "LONG" && cur_quantity == 0) {
-    add_event_to_queue<OrderEvent>(q_, event.get_symbol(), "MKT", mkt_quantity,
-                                   "LONG");
+    add_to_queue<OrderEvent>(q_, event.get_symbol(), "MKT", mkt_quantity,
+                             "LONG");
   }
   if (event.get_direction() == "SHORT" && cur_quantity == 0) {
-    add_event_to_queue<OrderEvent>(q_, event.get_symbol(), "MKT", mkt_quantity,
-                                   "SHORT");
+    add_to_queue<OrderEvent>(q_, event.get_symbol(), "MKT", mkt_quantity,
+                             "SHORT");
   }
 
   if (event.get_direction() == "EXIT" && cur_quantity > 0) {
-    add_event_to_queue<OrderEvent>(q_, event.get_symbol(), "MKT", cur_quantity,
-                                   "SHORT");
+    add_to_queue<OrderEvent>(q_, event.get_symbol(), "MKT", cur_quantity,
+                             "SHORT");
   }
   if (event.get_direction() == "EXIT" && cur_quantity < 0) {
-    add_event_to_queue<OrderEvent>(q_, event.get_symbol(), "MKT", cur_quantity,
-                                   "LONG");
+    add_to_queue<OrderEvent>(q_, event.get_symbol(), "MKT", cur_quantity,
+                             "LONG");
   }
 }
 

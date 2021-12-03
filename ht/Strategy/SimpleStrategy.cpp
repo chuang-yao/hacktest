@@ -17,9 +17,9 @@ SimpleStrategy::SimpleStrategy(EventQueue &q, HistoricalCsvHandler &dh)
 void SimpleStrategy::calculate_signal(MarketEvent &me) {
   for (const auto &symbol : symbols_) {
     if (!dh_.latest_data_.empty()) {
-      add_event_to_queue<SignalEvent>(
-          q_, symbol, dh_.latest_data_[symbol].rbegin()->second.date_, "LONG",
-          1);
+      add_to_queue<SignalEvent>(q_, symbol,
+                                dh_.latest_data_[symbol].rbegin()->second.date_,
+                                "LONG", 1);
       bought_[symbol] = true;
     }
   }

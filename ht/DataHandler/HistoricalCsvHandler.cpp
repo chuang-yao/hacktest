@@ -42,11 +42,11 @@ void HistoricalCsvHandler::update_bars() {
       }
     }
     if (sendMktEvent) {
-      add_event_to_queue<MarketEvent>(q_);
+      add_to_queue<MarketEvent>(q_);
     }
   } else {
     latest_data_ = data_;
-    add_event_to_queue<MarketEvent>(q_);
+    add_to_queue<MarketEvent>(q_);
   }
 }
 
