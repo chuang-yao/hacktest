@@ -58,7 +58,7 @@ void SimplePortfolio::update_time_index(MarketEvent &) {
                         current_holdings_.total_);
   for (const auto &symbol : symbols_) {
     double market_value = static_cast<double>(current_positions_[symbol]) *
-                          dh_.latest_data_[symbol].rbegin()->second.adjClose_;
+                          dh_.latest_data_[symbol].rbegin()->second.adj_close_;
     holding.holdings_[symbol] = market_value;
     holding.total_ += market_value;
   }
@@ -88,7 +88,7 @@ void SimplePortfolio::update_holdings_from_fill(FillEvent &event) {
     direction = 0;
   }
 
-  double cost{dh_.latest_data_[event.get_symbol()].rbegin()->second.adjClose_};
+  double cost{dh_.latest_data_[event.get_symbol()].rbegin()->second.adj_close_};
   double fill_cost{direction * cost * event.get_quantity()};
 
   current_holdings_.holdings_[event.get_symbol()] += fill_cost;

@@ -31,7 +31,7 @@ private:
   double high_;
   double low_;
   double close_;
-  double adjClose_;
+  double adj_close_;
   unsigned long long volume_;
 };
 

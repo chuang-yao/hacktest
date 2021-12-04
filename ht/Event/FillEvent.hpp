@@ -24,7 +24,7 @@ private:
   uint32_t quantity_;     // exact quantities transacted
   std::string direction_; // LONG or SHORT
   double fill_cost;       // order value in USD
-  double commission_;     // commission charged by real brokers, -1 if none
+  double commission_;     // commission charged by real brokers, 0 if none
 };
 
 } // namespace HackTest

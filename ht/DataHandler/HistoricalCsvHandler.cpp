@@ -25,7 +25,7 @@ void HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
          itr != data_[symbol].rend() && n != 0; ++itr, --n) {
       std::cout << itr->second.date_ << '\t' << itr->second.open_ << '\t'
                 << itr->second.high_ << '\t' << itr->second.low_ << '\t'
-                << itr->second.close_ << '\t' << itr->second.adjClose_ << '\t'
+                << itr->second.close_ << '\t' << itr->second.adj_close_ << '\t'
                 << itr->second.volume_ << '\n';
     }
   }
@@ -94,7 +94,7 @@ void HistoricalCsvHandler::show_data_on_date(const std::string &symbol,
     std::cout << itr_date->second.date_ << '\t' << itr_date->second.open_
               << '\t' << itr_date->second.high_ << '\t' << itr_date->second.low_
               << '\t' << itr_date->second.close_ << '\t'
-              << itr_date->second.adjClose_ << '\t' << itr_date->second.volume_
+              << itr_date->second.adj_close_ << '\t' << itr_date->second.volume_
               << '\n';
   } else {
     std::cout << "No data for " << symbol << " on " << date << '\n';
@@ -106,7 +106,7 @@ bool HistoricalCsvHandler::continue_test() const { return continue_; }
 YahooData::YahooData(std::string date, double open, double high, double low,
                      double close, double adjClose, unsigned long long volume)
     : Data("YAHOO", Type::HISTORICAL), date_(std::move(date)), open_(open),
-      high_(high), low_(low), close_(close), adjClose_(adjClose),
+      high_(high), low_(low), close_(close), adj_close_(adjClose),
       volume_(volume) {}
 
 } // namespace HackTest

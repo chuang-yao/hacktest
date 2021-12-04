@@ -15,7 +15,7 @@ void SimulatedExecutionHandler::execute_order(OrderEvent &event) {
   add_to_queue<FillEvent>(
       q_, event.get_symbol(), "NASDAQ", event.get_quantity(),
       event.get_direction(),
-      dh_.latest_data_[event.get_symbol()].rbegin()->second.adjClose_, -1);
+      dh_.latest_data_[event.get_symbol()].rbegin()->second.adj_close_, 0);
 }
 
 } // namespace HackTest
