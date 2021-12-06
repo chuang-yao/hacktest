@@ -18,7 +18,9 @@ set(HT_SOURCES
         Portfolio/SimplePortfolio.cpp
 
         ExecutionHandler/ExecutionHandler.cpp
-        ExecutionHandler/SimulatedExecutionHandler.cpp)
+        ExecutionHandler/SimulatedExecutionHandler.cpp
+
+        Utilities/Performance.cpp)
 
 set(HT_HEADERS
         HackTest.hpp
@@ -40,7 +42,9 @@ set(HT_HEADERS
         Portfolio/SimplePortfolio.hpp
 
         ExecutionHandler/ExecutionHandler.hpp
-        ExecutionHandler/SimulatedExecutionHandler.hpp)
+        ExecutionHandler/SimulatedExecutionHandler.hpp
+
+        Utilities/Performance.hpp)
 
 add_library(ht
         ${HT_SOURCES}
