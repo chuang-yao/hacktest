@@ -5,6 +5,8 @@
 #ifndef HACKTEST_PERFORMANCE_HPP
 #define HACKTEST_PERFORMANCE_HPP
 
+#include <vector>
+
 namespace HackTest {
 
 double calculate_sharpe_ratio(const std::vector<double> &, uint32_t);
