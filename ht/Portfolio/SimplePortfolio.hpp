@@ -32,8 +32,8 @@ public:
   void update_time_index(MarketEvent &) override;
   void update_position_from_fill(FillEvent &);
   void update_holdings_from_fill(FillEvent &);
-
   void generate_simple_order(SignalEvent &);
+  void calculate_returns_();
 
 private:
   EventQueue &q_;
@@ -48,6 +48,8 @@ private:
 
   SimpleHolding current_holdings_;
   std::map<std::string, SimpleHolding> all_holdings_;
+
+  std::map<std::string, double> returns_;
 };
 
 } // namespace HackTest

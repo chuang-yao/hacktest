@@ -120,4 +120,13 @@ void SimplePortfolio::generate_simple_order(SignalEvent &event) {
   }
 }
 
+void SimplePortfolio::calculate_returns_() {
+  for (auto itr{std::next(all_holdings_.cbegin(), 1)};
+       itr != all_holdings_.end(); ++itr) {
+    returns_.insert(
+        {itr->first,
+         itr->second.total_ / std::prev(itr, 1)->second.total_ - 1});
+  }
+}
+
 } // namespace HackTest
