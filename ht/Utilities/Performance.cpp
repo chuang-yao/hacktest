@@ -4,6 +4,7 @@
 
 #include "ht/Utilities/Performance.hpp"
 
+#include <cmath>
 #include <numeric>
 #include <vector>
 
