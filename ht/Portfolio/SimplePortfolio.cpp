@@ -19,7 +19,7 @@ SimplePortfolio::SimplePortfolio(EventQueue &q, HistoricalCsvHandler &dh,
                                  std::string date, double capital)
     : q_(q), dh_(dh), symbols_(dh.symbols_), start_date_(std::move(date)),
       initial_capital_(capital),
-      current_holdings_(SimpleHolding(dh_.symbols_, capital, 0.0, capital)) {
+      current_holdings_(SimpleHolding(dh.symbols_, capital, 0.0, capital)) {
   for (const auto &symbol : symbols_) {
     current_positions_.insert({symbol, 0});
   }
