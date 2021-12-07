@@ -30,7 +30,7 @@ int main() {
 #endif
 
   EventQueue q;
-  HistoricalCsvHandler bars(q, path, symbols);
+  HistoricalCsvHandler bars(q, path, symbols, "2021-01-01");
   SimplePortfolio portfolio(q, bars, "2021-01-04", 1000000.0);
   SimpleStrategy strategy(q, bars, portfolio);
   SimulatedExecutionHandler broker(q, bars);
@@ -84,6 +84,9 @@ int main() {
     std::cout << "The event queue is now empty! Sleep for 1ms...\n";
 #endif
     using namespace std::chrono_literals;
-    // std::this_thread::sleep_for(1ms);
+    std::this_thread::sleep_for(1ms);
+
+    portfolio.print_summary();
+    std::cout << '\n';
   }
 }

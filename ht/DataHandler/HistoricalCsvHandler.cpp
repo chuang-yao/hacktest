@@ -7,13 +7,16 @@
 
 #include <fstream>
 #include <sstream>
+#include <utility>
 
 namespace HackTest {
 
 HistoricalCsvHandler::HistoricalCsvHandler(EventQueue &q,
                                            std::filesystem::path path,
-                                           std::vector<std::string> symbols)
-    : q_(q), path_(std::move(path)), symbols_(std::move(symbols)) {
+                                           std::vector<std::string> symbols,
+                                           std::string date)
+    : q_(q), path_(std::move(path)), symbols_(std::move(symbols)),
+      start_date_(std::move(date)) {
   read_csv_files_();
 }
 

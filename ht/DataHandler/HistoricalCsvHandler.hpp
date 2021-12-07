@@ -42,7 +42,7 @@ class HistoricalCsvHandler : public DataHandler {
 
 public:
   HistoricalCsvHandler(EventQueue &, std::filesystem::path,
-                       std::vector<std::string>);
+                       std::vector<std::string>, std::string);
 
   void get_latest_bars(std::string, size_t) override;
   void update_bars() override;
@@ -53,8 +53,11 @@ private:
   EventQueue &q_;                    // reference to the current event queue
   std::filesystem::path path_;       // path to the directory of CSV files
   std::vector<std::string> symbols_; // a list of symbols to look for CSV files
+  std::string start_date_;           // read data from this date and on
+
   std::map<std::string, std::map<std::string, YahooData>> data_;
   std::map<std::string, std::map<std::string, YahooData>> latest_data_;
+
   bool continue_{true}; // whether to continue the backtest
 
   void read_csv_files_();

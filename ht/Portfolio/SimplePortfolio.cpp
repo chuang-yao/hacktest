@@ -54,13 +54,12 @@ void SimplePortfolio::update_time_index(MarketEvent &) {
 
   // update holdings
   SimpleHolding holding(symbols_, current_holdings_.cash_,
-                        current_holdings_.commission_,
-                        current_holdings_.total_);
+                        current_holdings_.commission_, current_holdings_.cash_);
   for (const auto &symbol : symbols_) {
     double market_value = static_cast<double>(current_positions_[symbol]) *
                           dh_.latest_data_[symbol].rbegin()->second.adj_close_;
-    holding.total_ += market_value - holding.holdings_[symbol];
     holding.holdings_[symbol] = market_value;
+    holding.total_ += market_value;
   }
 
   current_holdings_.total_ = holding.total_;
@@ -138,6 +137,12 @@ void SimplePortfolio::calculate_returns_() {
 
 const std::string &SimplePortfolio::get_start_date() const {
   return start_date_;
+}
+
+void SimplePortfolio::print_summary() {
+  std::cout << std::fixed << std::setprecision(2);
+  std::cout << "Date: " << all_holdings_.rbegin()->first << '\t';
+  std::cout << "Portfolio Value: $" << current_holdings_.total_ << '\n';
 }
 
 } // namespace HackTest

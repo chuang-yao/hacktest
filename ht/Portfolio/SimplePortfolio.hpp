@@ -34,6 +34,7 @@ public:
   void update_holdings_from_fill(FillEvent &);
   void generate_simple_order(SignalEvent &);
   void calculate_returns_();
+  void print_summary();
 
   [[nodiscard]] const std::string &get_start_date() const;
 
