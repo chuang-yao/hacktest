@@ -5,6 +5,7 @@
 #ifndef HACKTEST_PERFORMANCE_HPP
 #define HACKTEST_PERFORMANCE_HPP
 
+#include <cstdint>
 #include <vector>
 
 namespace HackTest {
