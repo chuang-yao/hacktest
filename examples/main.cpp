@@ -31,8 +31,8 @@ int main() {
 
   EventQueue q;
   HistoricalCsvHandler bars(q, path, symbols);
-  SimpleStrategy strategy(q, bars);
-  SimplePortfolio portfolio(q, bars, "2021-01-01", 1000000.0);
+  SimplePortfolio portfolio(q, bars, "2021-01-04", 1000000.0);
+  SimpleStrategy strategy(q, bars, portfolio);
   SimulatedExecutionHandler broker(q, bars);
 
   while (true) {
@@ -81,9 +81,9 @@ int main() {
       }
     }
 #ifdef DEBUG
-    std::cout << "The event queue is now empty! Sleep for 1000ms...\n";
+    std::cout << "The event queue is now empty! Sleep for 1ms...\n";
 #endif
     using namespace std::chrono_literals;
-    std::this_thread::sleep_for(1000ms);
+    // std::this_thread::sleep_for(1ms);
   }
 }

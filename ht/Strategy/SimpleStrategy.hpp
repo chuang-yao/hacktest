@@ -7,18 +7,20 @@
 
 #include "ht/DataHandler/HistoricalCsvHandler.hpp"
 #include "ht/Event/Event.hpp"
+#include "ht/Portfolio/SimplePortfolio.hpp"
 #include "ht/Strategy/Strategy.hpp"
 
 namespace HackTest {
 
 class SimpleStrategy : public Strategy {
 public:
-  SimpleStrategy(EventQueue &, HistoricalCsvHandler &);
+  SimpleStrategy(EventQueue &, HistoricalCsvHandler &, SimplePortfolio &);
   void calculate_signal(MarketEvent &) override;
 
 private:
   EventQueue &q_;
   HistoricalCsvHandler &dh_;
+  SimplePortfolio &portfolio_;
   std::vector<std::string> symbols_;
   std::map<std::string, bool> bought_;
 };

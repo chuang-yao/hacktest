@@ -35,6 +35,8 @@ public:
   void generate_simple_order(SignalEvent &);
   void calculate_returns_();
 
+  [[nodiscard]] const std::string &get_start_date() const;
+
 private:
   EventQueue &q_;
   HistoricalCsvHandler &dh_;

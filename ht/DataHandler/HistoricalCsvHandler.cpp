@@ -32,21 +32,29 @@ void HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
 }
 
 void HistoricalCsvHandler::update_bars() {
-  if (!latest_data_.empty()) {
-    bool send_mkt_event{false};
-    for (const auto &symbol : symbols_) {
-      for (auto itr{data_[symbol].rbegin()};
-           itr->first > latest_data_[symbol].rbegin()->first; ++itr) {
-        latest_data_[symbol].insert(*itr);
-        send_mkt_event = true; // only send a MarketEvent when there is new data
-      }
+  for (auto &df : data_) {
+    std::map<std::string, YahooData> entry;
+    entry.insert({df.second.begin()->first, df.second.begin()->second});
+    if (!latest_data_.contains(df.first)) {
+      latest_data_.insert({df.first, std::map<std::string, YahooData>()});
     }
-    if (send_mkt_event) {
-      add_to_queue<MarketEvent>(q_);
+    latest_data_[df.first].insert(
+        {entry.begin()->first, entry.begin()->second});
+    if (!df.second.empty()) {
+      df.second.erase(df.second.begin());
     }
-  } else {
-    latest_data_ = data_;
-    add_to_queue<MarketEvent>(q_);
+  }
+
+  add_to_queue<MarketEvent>(q_);
+
+  bool is_empty{true};
+  for (const auto &df : data_) {
+    if (!df.second.empty()) {
+      is_empty = false;
+    }
+  }
+  if (is_empty) {
+    continue_ = false;
   }
 }
 
@@ -76,7 +84,9 @@ void HistoricalCsvHandler::read_csv_files_() {
         unsigned long long volume = std::stoull(field);
 
         YahooData entry(date, open, high, low, close, adjClose, volume);
-        data_[symbol].insert({entry.date_, entry});
+        if (entry.date_ >= "2020-12-31") {
+          data_[symbol].insert({entry.date_, entry});
+        }
       }
     } else {
       std::cout << "Failed to open " << path_ / (symbol + ".csv") << '\n';
