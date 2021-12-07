@@ -18,7 +18,7 @@ using namespace HackTest;
 namespace fs = std::filesystem;
 
 int main() {
-  std::vector<std::string> symbols{"AAPL", "^IXIC", "MSFT"};
+  std::vector<std::string> symbols{"AAPL", "MSFT"};
 #ifdef __linux__
   fs::path path{"/home/chuang/HackTest/examples/data"};
 #endif
@@ -32,7 +32,7 @@ int main() {
   EventQueue q;
   HistoricalCsvHandler bars(q, path, symbols);
   SimpleStrategy strategy(q, bars);
-  SimplePortfolio portfolio(q, bars, "2021-01-01", 100.0);
+  SimplePortfolio portfolio(q, bars, "2021-01-01", 1000000.0);
   SimulatedExecutionHandler broker(q, bars);
 
   while (true) {

@@ -76,10 +76,12 @@ void SimplePortfolio::update_position_from_fill(FillEvent &event) {
   }
 
   current_positions_[event.get_symbol()] += event.get_quantity() * direction;
+
+  all_positions_.rbegin()->second = current_positions_;
 }
 
 void SimplePortfolio::update_holdings_from_fill(FillEvent &event) {
-  double direction;
+  int direction;
   if (event.get_direction() == "LONG") {
     direction = 1;
   } else if (event.get_direction() == "SHORT") {
@@ -95,6 +97,8 @@ void SimplePortfolio::update_holdings_from_fill(FillEvent &event) {
   current_holdings_.commission_ += event.get_commission();
   current_holdings_.cash_ -= fill_cost + event.get_commission();
   current_holdings_.total_ -= fill_cost + event.get_commission();
+
+  all_holdings_.rbegin()->second = current_holdings_;
 }
 
 void SimplePortfolio::generate_simple_order(SignalEvent &event) {
