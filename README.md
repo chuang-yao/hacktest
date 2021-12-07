@@ -82,6 +82,8 @@ the semester, we can have a working demo of backtesting a simple trading strateg
 
 # Final Report - 12/07/2021
 
+*Chuang Yao, Jianqi Zhu, Kongjun Qin.*
+
 We have finished implementing the remaining core components of `HackTest`, including `Strategy`,`Portfolio`
 , `ExecutionHandler`, and some helper functions for measuring portfolio performance. The library is now capable for
 backtesting basic equity-based strategies.
