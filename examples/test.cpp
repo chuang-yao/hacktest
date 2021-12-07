@@ -45,7 +45,7 @@ int main() {
 
   // a list of symbols with existing csv data files
   std::vector<std::string> symbols{"AAPL", "^IXIC", "MSFT"};
-  HistoricalCsvHandler dh(q, path, symbols);
+  HistoricalCsvHandler dh(q, path, symbols, "2000-01-01");
 
   // no data on AMD, should output "No data ..."
   dh.show_data_on_date("AMD", "2019-06-13");
