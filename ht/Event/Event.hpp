@@ -32,7 +32,7 @@ private:
 };
 
 class EventQueue {
-  template <typename D, typename... Args>
+  template <typename DerivedEvent, typename... Args>
   friend void add_to_queue(EventQueue &q, Args... args);
 
 public:
