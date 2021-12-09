@@ -30,15 +30,15 @@ int main() {
 #endif
 
   EventQueue q;
-  HistoricalCsvHandler bars(q, path, symbols, "2021-01-01");
-  SimplePortfolio portfolio(q, bars, "2021-01-04", 1000000.0);
-  SimpleStrategy strategy(q, bars, portfolio);
-  SimulatedExecutionHandler broker(q, bars);
+  HistoricalCsvHandler dh(q, path, symbols, "2021-01-01");
+  SimplePortfolio portfolio(q, dh, "2021-01-04", 1000000.0);
+  SimpleStrategy strategy(q, dh, portfolio);
+  SimulatedExecutionHandler broker(q, dh);
 
   while (true) {
-    // update the bars
-    if (bars.continue_test()) {
-      bars.update_bars();
+    // update the dh
+    if (dh.continue_test()) {
+      dh.update_bars();
     } else {
       break;
     }
