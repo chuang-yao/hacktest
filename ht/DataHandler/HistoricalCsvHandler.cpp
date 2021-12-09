@@ -72,23 +72,25 @@ void HistoricalCsvHandler::read_csv_files_() {
         // Date,Open,High,Low,Close,Adj Close,Volume
         std::string field;
         std::getline(ss, field, ',');
-        std::string date = field;
-        std::getline(ss, field, ',');
-        double open = std::stod(field);
-        std::getline(ss, field, ',');
-        double high = std::stod(field);
-        std::getline(ss, field, ',');
-        double low = std::stod(field);
-        std::getline(ss, field, ',');
-        double close = std::stod(field);
-        std::getline(ss, field, ',');
-        double adjClose = std::stod(field);
-        std::getline(ss, field, ',');
-        unsigned long long volume = std::stoull(field);
+        if (field >= start_date_) {
+          std::string date{field};
+          std::getline(ss, field, ',');
+          double open = std::stod(field);
+          std::getline(ss, field, ',');
+          double high = std::stod(field);
+          std::getline(ss, field, ',');
+          double low = std::stod(field);
+          std::getline(ss, field, ',');
+          double close = std::stod(field);
+          std::getline(ss, field, ',');
+          double adjClose = std::stod(field);
+          std::getline(ss, field, ',');
+          unsigned long long volume = std::stoull(field);
 
-        YahooData entry(date, open, high, low, close, adjClose, volume);
-        if (entry.date_ >= "2020-12-31") {
+          YahooData entry(date, open, high, low, close, adjClose, volume);
           data_[symbol].insert({entry.date_, entry});
+        } else {
+          continue;
         }
       }
     } else {
