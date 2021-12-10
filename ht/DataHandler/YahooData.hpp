@@ -34,7 +34,7 @@ private:
   double low_;
   double close_;
   double adj_close_;
-  unsigned long long volume_;
+  uint64_t volume_;
 };
 
 std::ostream &operator<<(std::ostream &os, const YahooData &);

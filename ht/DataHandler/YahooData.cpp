@@ -11,7 +11,7 @@
 namespace HackTest {
 
 YahooData::YahooData(std::string date, double open, double high, double low,
-                     double close, double adjClose, unsigned long long volume)
+                     double close, double adjClose, uint64_t volume)
     : Data("YAHOO", Type::HISTORICAL), date_(std::move(date)), open_(open),
       high_(high), low_(low), close_(close), adj_close_(adjClose),
       volume_(volume) {}

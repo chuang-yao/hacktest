@@ -24,7 +24,7 @@ HistoricalCsvHandler::HistoricalCsvHandler(EventQueue &q,
 std::any HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
   std::map<std::string, YahooData> bars;
   if (data_.contains(symbol)) {
-    for (auto itr = data_[symbol].rbegin();
+    for (auto itr{data_[symbol].rbegin()};
          itr != data_[symbol].rend() && n != 0; ++itr, --n) {
       bars.insert(
           {itr->second.date_,
@@ -77,17 +77,17 @@ void HistoricalCsvHandler::read_csv_files_() {
         if (field >= start_date_) {
           std::string date{field};
           std::getline(ss, field, ',');
-          double open = std::stod(field);
+          double open{std::stod(field)};
           std::getline(ss, field, ',');
-          double high = std::stod(field);
+          double high{std::stod(field)};
           std::getline(ss, field, ',');
-          double low = std::stod(field);
+          double low{std::stod(field)};
           std::getline(ss, field, ',');
-          double close = std::stod(field);
+          double close{std::stod(field)};
           std::getline(ss, field, ',');
-          double adjClose = std::stod(field);
+          double adjClose{std::stod(field)};
           std::getline(ss, field, ',');
-          unsigned long long volume = std::stoull(field);
+          uint64_t volume{std::stoull(field)};
 
           YahooData entry(date, open, high, low, close, adjClose, volume);
           data_[symbol].insert({entry.date_, entry});
