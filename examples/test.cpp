@@ -66,6 +66,8 @@ int main() {
   // test if the member function is working
   auto bars{std::any_cast<std::map<std::string, YahooData>>(
       dh.get_latest_bars("AAPL", 10))};
+  std::cout << "Showing the latest " << 10 << " entries for "
+            << bars.begin()->first << '\n';
   for (const auto &bar : bars) {
     std::cout << bar.second;
   }

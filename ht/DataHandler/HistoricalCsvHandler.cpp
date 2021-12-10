@@ -24,8 +24,6 @@ HistoricalCsvHandler::HistoricalCsvHandler(EventQueue &q,
 std::any HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
   std::map<std::string, YahooData> bars;
   if (data_.contains(symbol)) {
-    std::cout << "Showing the latest " << n << " entries for " << symbol
-              << '\n';
     for (auto itr = data_[symbol].rbegin();
          itr != data_[symbol].rend() && n != 0; ++itr, --n) {
       bars.insert(
