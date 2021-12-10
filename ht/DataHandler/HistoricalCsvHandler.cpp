@@ -108,11 +108,7 @@ void HistoricalCsvHandler::show_data_on_date(const std::string &symbol,
     auto itr_symbol = data_.find(symbol);
     auto itr_date = itr_symbol->second.find(date);
     std::cout << "Showing data for " << symbol << " on " << date << '\n';
-    std::cout << itr_date->second.date_ << '\t' << itr_date->second.open_
-              << '\t' << itr_date->second.high_ << '\t' << itr_date->second.low_
-              << '\t' << itr_date->second.close_ << '\t'
-              << itr_date->second.adj_close_ << '\t' << itr_date->second.volume_
-              << '\n';
+    std::cout << itr_date->second;
   } else {
     std::cout << "No data for " << symbol << " on " << date << '\n';
   }
