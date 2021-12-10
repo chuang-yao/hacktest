@@ -26,7 +26,6 @@ int main() {
   SignalEvent se(q, "AAPL", "2021-01-01", "LONG", 1);
   OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
   FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 100, -1);
-  std::cout << '\n';
 
   add_to_queue<MarketEvent>(q);
   add_to_queue<SignalEvent>(q, "AAPL", "2021-01-01", "LONG", 1);
