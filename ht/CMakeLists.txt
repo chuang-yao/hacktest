@@ -7,18 +7,14 @@ set(HT_SOURCES
         Event/OrderEvent.cpp
         Event/FillEvent.cpp
 
-        DataHandler/DataHandler.cpp
         DataHandler/Data.cpp
         DataHandler/YahooData.cpp
         DataHandler/HistoricalCsvHandler.cpp
 
-        Strategy/Strategy.cpp
         Strategy/SimpleStrategy.cpp
 
-        Portfolio/Portfolio.cpp
         Portfolio/SimplePortfolio.cpp
 
-        ExecutionHandler/ExecutionHandler.cpp
         ExecutionHandler/SimulatedExecutionHandler.cpp
 
         Utilities/Performance.cpp)
