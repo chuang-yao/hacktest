@@ -128,6 +128,6 @@ Date: 2021-12-03	Portfolio Value: $1014035.25
 There is much to be improved. We are looking at the following potential improvements:
 
 - implement a `pandas`-style dataframe class that stores pricing data in contiguous memory for faster and easier access.
-- make the event-handling mechanics asynchronous.
+- improve performance when reading csv files.
 - supporting more complicated trading strategies.
 - try to hook the system up with real-time data and see if it works.
