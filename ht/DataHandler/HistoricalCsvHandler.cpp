@@ -3,6 +3,7 @@
 //
 
 #include "ht/DataHandler/HistoricalCsvHandler.hpp"
+#include "ht/DataHandler/YahooData.hpp"
 #include "ht/Event/MarketEvent.hpp"
 
 #include <fstream>
@@ -20,18 +21,21 @@ HistoricalCsvHandler::HistoricalCsvHandler(EventQueue &q,
   read_csv_files_();
 }
 
-void HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
+std::any HistoricalCsvHandler::get_latest_bars(std::string symbol, size_t n) {
+  std::map<std::string, YahooData> bars;
   if (data_.contains(symbol)) {
     std::cout << "Showing the latest " << n << " entries for " << symbol
               << '\n';
     for (auto itr = data_[symbol].rbegin();
          itr != data_[symbol].rend() && n != 0; ++itr, --n) {
-      std::cout << itr->second.date_ << '\t' << itr->second.open_ << '\t'
-                << itr->second.high_ << '\t' << itr->second.low_ << '\t'
-                << itr->second.close_ << '\t' << itr->second.adj_close_ << '\t'
-                << itr->second.volume_ << '\n';
+      bars.insert(
+          {itr->second.date_,
+           YahooData(itr->second.date_, itr->second.open_, itr->second.high_,
+                     itr->second.low_, itr->second.close_,
+                     itr->second.adj_close_, itr->second.volume_)});
     }
   }
+  return bars;
 }
 
 void HistoricalCsvHandler::update_bars() {
@@ -117,11 +121,5 @@ void HistoricalCsvHandler::show_data_on_date(const std::string &symbol,
 }
 
 bool HistoricalCsvHandler::continue_test() const { return continue_; }
-
-YahooData::YahooData(std::string date, double open, double high, double low,
-                     double close, double adjClose, unsigned long long volume)
-    : Data("YAHOO", Type::HISTORICAL), date_(std::move(date)), open_(open),
-      high_(high), low_(low), close_(close), adj_close_(adjClose),
-      volume_(volume) {}
 
 } // namespace HackTest

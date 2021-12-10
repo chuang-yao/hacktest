@@ -9,6 +9,7 @@ set(HT_SOURCES
 
         DataHandler/DataHandler.cpp
         DataHandler/Data.cpp
+        DataHandler/YahooData.cpp
         DataHandler/HistoricalCsvHandler.cpp
 
         Strategy/Strategy.cpp
@@ -33,6 +34,7 @@ set(HT_HEADERS
 
         DataHandler/DataHandler.hpp
         DataHandler/Data.hpp
+        DataHandler/YahooData.hpp
         DataHandler/HistoricalCsvHandler.hpp
 
         Strategy/Strategy.hpp

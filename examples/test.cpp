@@ -6,12 +6,15 @@
 #include "ht/Event/all.hpp"
 #include "ht/HackTest.hpp"
 
+#include <iostream>
+
 // WARNING: std::filesystem might not work on some versions of macOS!
 namespace fs = std::filesystem;
 using namespace HackTest;
 
 int main() {
   say_hello();
+  std::cout << '\n';
 
   // creating an event queue
   EventQueue q;
@@ -23,6 +26,7 @@ int main() {
   SignalEvent se(q, "AAPL", "2021-01-01", "LONG", 1);
   OrderEvent oe(q, "AAPL", "MKT", 100, "SHORT");
   FillEvent fe(q, "AAPL", "NASDAQ", 100, "LONG", 100, -1);
+  std::cout << '\n';
 
   add_to_queue<MarketEvent>(q);
   add_to_queue<SignalEvent>(q, "AAPL", "2021-01-01", "LONG", 1);
@@ -30,6 +34,7 @@ int main() {
   add_to_queue<FillEvent>(q, "AAPL", "NASDAQ", 100, "LONG", 100, -1);
 
   q.show();
+  std::cout << '\n';
 
   // path to the directory containing csv price files
   // please manually modify this if you want to run it on your computer
@@ -49,14 +54,19 @@ int main() {
 
   // no data on AMD, should output "No data ..."
   dh.show_data_on_date("AMD", "2019-06-13");
+  std::cout << '\n';
 
   // test if csv file is properly read
   dh.show_data_on_date("AAPL", "2019-06-13");
   dh.show_data_on_date("AAPL", "2021-06-13");
   dh.show_data_on_date("MSFT", "2019-06-13");
   dh.show_data_on_date("MSFT", "2021-06-13");
+  std::cout << '\n';
 
   // test if the member function is working
-  dh.get_latest_bars("AAPL", 5);
-  dh.get_latest_bars("MSFT", 5);
+  auto bars{std::any_cast<std::map<std::string, YahooData>>(
+      dh.get_latest_bars("AAPL", 10))};
+  for (const auto &bar : bars) {
+    std::cout << bar.second;
+  }
 }
