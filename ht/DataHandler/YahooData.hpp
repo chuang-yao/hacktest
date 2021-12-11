@@ -17,7 +17,7 @@ class YahooData : public Data {
 
 public:
   YahooData(std::string date, double open, double high, double low,
-            double close, double adjClose, unsigned long long volume);
+            double close, double adjClose, uint64_t volume);
 
   [[nodiscard]] std::string get_date() const { return date_; }
   [[nodiscard]] double get_open() const { return open_; }
